@@ -1,7 +1,6 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
-import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { LinkContainer } from "react-router-bootstrap";
@@ -28,7 +27,10 @@ const navbar = () => {
                         </LinkContainer>
                     </Nav>
                     <LinkContainer to="/login">
-                        <Button variant="outline-success">Login</Button>
+                        <Button variant="outline-light" className="mx-3">Login</Button>
+                    </LinkContainer>
+                    <LinkContainer to="/register">
+                        <Button variant="outline-light">Register</Button>
                     </LinkContainer>
                 </Navbar.Collapse>
             </Container>
