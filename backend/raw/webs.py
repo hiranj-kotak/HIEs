@@ -55,4 +55,8 @@ for  key in links:
     data.append(data1)
     print(len(data1))
 
+with open("data.txt", "w") as external_file:
+    print(data, file=external_file)
+    external_file.close()
+        
 print(data)
