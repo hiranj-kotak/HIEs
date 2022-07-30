@@ -13,7 +13,7 @@ const REgister = () => {
                 <Card.Body>
                     <Card.Title>Register</Card.Title>
                     <Form>
-                    <Form.Group className="mb-3" controlId="formBasicName">
+                        <Form.Group className="mb-3" controlId="formBasicName">
                             <Form.Label>User name</Form.Label>
                             <Form.Control
                                 type="text"

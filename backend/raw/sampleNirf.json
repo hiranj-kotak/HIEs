@@ -1,24 +1,6 @@
 {
-    "data": [
-        {
-            "__id": "__ljhdsfjhdsiufuashf",
-            "instituteName": "CHARUSAT",
-            "NirfRank": 1
-        },
-        {
-            "__id": "__ljhdsfjhdsiufuashf",
-            "instituteName": "CHARUSAT",
-            "NirfRank": 1
-        },
-        {
-            "__id": "__ljhdsfjhdsiufuashf",
-            "instituteName": "CHARUSAT",
-            "NirfRank": 1
-        },
-        {
-            "__id": "__ljhdsfjhdsiufuashf",
-            "instituteName": "CHARUSAT",
-            "NirfRank": 1
-        }
-    ]
+    "Charusat": 1,
+    "CHarusat2": 10,
+    "CHarusat3": 101,
+    "CHarusat4": 110
 }

@@ -22,8 +22,8 @@ const navbar = () => {
                         <LinkContainer to="/">
                             <Nav.Link href="">Home</Nav.Link>
                         </LinkContainer>
-                        <LinkContainer to="/form1">
-                            <Nav.Link href="">Form1</Nav.Link>
+                        <LinkContainer to="/detail">
+                            <Nav.Link href="">Check Detail here</Nav.Link>
                         </LinkContainer>
                     </Nav>
                     <LinkContainer to="/login">
