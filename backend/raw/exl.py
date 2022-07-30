@@ -26,7 +26,7 @@ d = dict(zip(data,data1))
 print(d)
 
 with open("naac.txt", "w") as external_file:
-    print(data, file=external_file)
+    print(d, file=external_file)
     external_file.close()
 # for item in d:
 #     if item == 'Rashtriya Sanskrit Vidyapeetha':
