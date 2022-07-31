@@ -5,9 +5,7 @@ from backend.raw.naac_exl import naac
 from bs4 import BeautifulSoup as b
 
 app = Flask(__name__)
-cors = CORS(app, resources={r"/foo": {"origins": "*"}})
-app.config['CORS_HEADERS'] = 'Content-Type'
-
+CORS(app)
 @app.route('/')
 def hello_world():
     return 'hello world!'
