@@ -22,6 +22,9 @@ const navbar = () => {
                         <LinkContainer to="/">
                             <Nav.Link href="">Home</Nav.Link>
                         </LinkContainer>
+                        <LinkContainer to="/detailsfrm">
+                            <Nav.Link href="">Fill Detail here</Nav.Link>
+                        </LinkContainer>
                         <LinkContainer to="/detail">
                             <Nav.Link href="">Check Detail here</Nav.Link>
                         </LinkContainer>
