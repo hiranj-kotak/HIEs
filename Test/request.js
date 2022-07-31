@@ -1,19 +1,23 @@
-const https = require("https");
+const http = require("http");
 
-https
-    .get("http://127.0.0.1:5000/api1", (resp) => {
-        let data = "";
+const options = {
+  "method": "GET",
+  "hostname": "127.0.0.1",
+  "port": "5000",
+  "path": "/api2",
+};
 
-        // A chunk of data has been received.
-        resp.on("data", (chunk) => {
-            data += chunk;
-        });
+const req = http.request(options, function (res) {
+  const chunks = [];
 
-        // The whole response has been received. Print out the result.
-        resp.on("end", () => {
-            console.log(JSON.parse(data).explanation);
-        });
-    })
-    .on("error", (err) => {
-        console.log("Error: " + err.message);
-    });
+  res.on("data", function (chunk) {
+    chunks.push(chunk);
+  });
+
+  res.on("end", function () {
+    const body = Buffer.concat(chunks);
+    console.log(body.toString());
+  });
+});
+
+req.end();

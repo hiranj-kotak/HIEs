@@ -7,7 +7,6 @@ import Row from "react-bootstrap/Row";
 import Card from "react-bootstrap/Card";
 import BGimg from "../assets/BG2.jpg";
 import axios from "axios";
-// const cors = require('cors')
 
 const options = { method: "GET", url: "http://127.0.0.1:5000/api1" };
 
