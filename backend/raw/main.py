@@ -1,5 +1,5 @@
 from flask import Flask, jsonify
-from list_to_dic import table
+from nirf import table
 from naac_exl import naac
 from bs4 import BeautifulSoup as b
 
