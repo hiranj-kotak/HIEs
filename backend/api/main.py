@@ -10,7 +10,7 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 
 @app.route('/')
 def hello_world():
-    return 'Hello, World!'
+    return 'hello world!'
 
 @app.route('/api1')
 def api1():
