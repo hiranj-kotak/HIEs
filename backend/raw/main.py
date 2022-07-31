@@ -1,9 +1,12 @@
-from flask import Flask, jsonify
-from nirf import table
+from flask import Flask,jsonify
+from flask_cors import CORS, cross_origin
+from nirf import nirf_final
 from naac_exl import naac
 from bs4 import BeautifulSoup as b
 
 app = Flask(__name__)
+cors = CORS(app, resources={r"/foo": {"origins": "*"}})
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 @app.route('/')
 def hello_world():
@@ -11,9 +14,7 @@ def hello_world():
 
 @app.route('/api1')
 def api1():
-    url = "https://www.nirfindia.org/2022/OverallRanking.html"
-    data1=table(url)
-    # print(data1)
+    data1 = nirf_final()
     return jsonify(data1)
 
 @app.route('/api2')

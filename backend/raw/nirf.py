@@ -36,7 +36,7 @@ def table(url):
     return datas
 
 
-def nirf():
+def nirf_final():
     d1 = {
             "overall":"https://www.nirfindia.org/2022/OverallRanking.html",
             "university": "https://www.nirfindia.org/2022/UniversityRanking.html",
