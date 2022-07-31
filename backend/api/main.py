@@ -6,12 +6,13 @@ from flask_cors import CORS
 # from bs4 import BeautifulSoup as b
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/api1/": {"origins": "*"}})
+CORS(app, resources={r"/api2/": {"origins": "*"}})
 
 
 @app.route('/')
 def hello_world():
-    return 'Hit chuthiyo!'
+    return 'Hit'
 
 @app.route('/api1/', methods=['GET'])
 def api1():
