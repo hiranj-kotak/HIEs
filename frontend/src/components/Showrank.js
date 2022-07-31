@@ -4,7 +4,6 @@ import Table from "react-bootstrap/Table";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { LinkContainer } from "react-router-bootstrap";
 
 const data = {
     data: [
@@ -80,6 +79,15 @@ const data = {
             NbaRank: "tier-2",
             doclink: "urlOfdocuments.com/urlparameters",
         },
+        {
+            __id: "__ljhddffsfjafasssiufuashf",
+            Date: "05-10-2021",
+            instituteName: "CHARUSAT",
+            NirfRank: 4,
+            NaacRank: "A",
+            NbaRank: "tier-2",
+            doclink: "urlOfdocuments.com/urlparameters",
+        },
     ],
 };
 
@@ -126,7 +134,7 @@ const Showrank = () => {
                         <th>NIRF Rank</th>
                         <th>NBA Rank</th>
                         <th>Changed on</th>
-                        <th>Doments</th>
+                        <th>Documents</th>
                     </tr>
                 </thead>
                 <tbody>{dataTable}</tbody>
