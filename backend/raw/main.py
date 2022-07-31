@@ -1,7 +1,7 @@
 from flask import Flask,jsonify
 from flask_cors import CORS
-from backend.raw.nirf import nirf_final
-from backend.raw.naac_exl import naac
+from nirf import nirf_final
+from naac_exl import naac
 from bs4 import BeautifulSoup as b
 
 app = Flask(__name__)
