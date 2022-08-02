@@ -56,6 +56,10 @@ const DetailFrm = () => {
     const postData = async (e) => {
         e.preventDefault();
 
+        if (detail.type === "university") {
+            detail.subtype = "none";
+        }
+
         const { institute, type, NIRF, NBA, NAAC } = detail;
 
         if (!institute || !type || !NIRF || !NBA || !NAAC) {
