@@ -59,13 +59,13 @@ const REgister = () => {
         } else {
             console.log(user);
 
-            setUser({ name: "", email: "", password: "", cpassword: "" });
-
             MySwal.fire({
                 icon: "success",
                 title: <p>Registration successfull</p>,
                 text: `Thank you for registration ${name}`,
             });
+
+            setUser({ name: "", email: "", password: "", cpassword: "" });
 
             // Send user to backend is remaining
             navigate("/login");

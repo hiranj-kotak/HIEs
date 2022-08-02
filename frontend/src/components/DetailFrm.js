@@ -1,17 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
+import withReactContent from "sweetalert2-react-content";
+// import axios from "axios";
+// Bootstrap imports
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Card from "react-bootstrap/Card";
+// assets imports
 import BGimg from "../assets/BG2.jpg";
-// import axios from "axios";
 
 const institutes = [
-    "university",
     "architecture",
-    "college",
     "dental",
     "engineering",
     "law",
@@ -27,31 +30,100 @@ const institutes = [
     );
 });
 
-const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Submitted");
-};
-
 const DetailFrm = () => {
+    const MySwal = withReactContent(Swal);
+    const navigate = useNavigate();
+
+    let name, value;
+
+    const [detail, setDetail] = useState({
+        institute: "",
+        subtype: "architecture",
+        type: "university",
+        NIRF: "",
+        NBA: "",
+        NAAC: "",
+    });
+
+    const handleInputs = (e) => {
+        // console.log(e);
+        name = e.target.name;
+        value = e.target.value;
+
+        setDetail({ ...detail, [name]: value });
+    };
+
+    const postData = async (e) => {
+        e.preventDefault();
+
+        const { institute, type, NIRF, NBA, NAAC } = detail;
+
+        if (!institute || !type || !NIRF || !NBA || !NAAC) {
+            MySwal.fire({
+                icon: "error",
+                title: <p>Error!</p>,
+                text: "All details are required",
+            });
+        } else {
+            console.log(detail);
+
+            setDetail({ institute: "", type: "", NIRF: "", NBA: "", NAAC: "" });
+
+            MySwal.fire({
+                icon: "success",
+                title: <p>Thank you!</p>,
+                text: `your detial submited successfully`,
+            });
+            // Send user to backend is remaining
+            navigate("/detail");
+        }
+    };
+
     return (
         <>
             <Container className="my-5 d-flex justify-content-center">
-                <Card style={{ width: "38rem" }}>
+                <Card style={{ width: "58rem" }}>
                     <Card.Img variant="top" src={BGimg} />
                     <Card.Body>
                         <Card.Title>Enter Yout collage details here</Card.Title>
                         <Form method="POST">
                             <Row className="mb-3">
                                 <Form.Group as={Col} controlId="instituteName">
+                                    <Form.Label>Institute Type</Form.Label>
+                                    <Form.Select
+                                        aria-label="Default select example"
+                                        name="type"
+                                        autoComplete="off"
+                                        value={detail.type}
+                                        onChange={handleInputs}
+                                    >
+                                        <option value="university">
+                                            University
+                                        </option>
+                                        <option value="collage">Collage</option>
+                                    </Form.Select>
+                                </Form.Group>
+                                <Form.Group as={Col} controlId="instituteName">
                                     <Form.Label>Institute Name</Form.Label>
                                     <Form.Control
                                         type="text"
                                         placeholder="Institute name"
+                                        name="institute"
+                                        autoComplete="off"
+                                        value={detail.institute}
+                                        onChange={handleInputs}
                                     />
                                 </Form.Group>
                                 <Form.Group as={Col} controlId="instituteType">
-                                    <Form.Label>Institute Type</Form.Label>
-                                    <Form.Select aria-label="Default select example">
+                                    <Form.Label>Institute Sub Type</Form.Label>
+                                    <Form.Select
+                                        aria-label="Default select example"
+                                        name="subtype"
+                                        autoComplete="off"
+                                        value={detail.subtype}
+                                        onChange={handleInputs}
+                                        disabled={detail.type !== "collage"}
+                                    >
                                         {institutes}
                                     </Form.Select>
                                 </Form.Group>
@@ -62,6 +134,10 @@ const DetailFrm = () => {
                                     <Form.Control
                                         type="number"
                                         placeholder="NIRF Rank"
+                                        name="NIRF"
+                                        autoComplete="off"
+                                        value={detail.NIRF}
+                                        onChange={handleInputs}
                                     />
                                 </Form.Group>
                                 <Form.Group as={Col} controlId="formGridEmail">
@@ -69,6 +145,10 @@ const DetailFrm = () => {
                                     <Form.Control
                                         type="text"
                                         placeholder="NBA Rank"
+                                        name="NBA"
+                                        autoComplete="off"
+                                        value={detail.NBA}
+                                        onChange={handleInputs}
                                     />
                                 </Form.Group>
 
@@ -80,13 +160,17 @@ const DetailFrm = () => {
                                     <Form.Control
                                         type="text"
                                         placeholder="NAAC Rank"
+                                        name="NAAC"
+                                        autoComplete="off"
+                                        value={detail.NAAC}
+                                        onChange={handleInputs}
                                     />
                                 </Form.Group>
                             </Row>
                             <Button
                                 variant="primary"
                                 type="submit"
-                                onClick={handleSubmit}
+                                onClick={postData}
                             >
                                 Submit
                             </Button>
