@@ -1,6 +1,6 @@
 from flask import Flask,jsonify
 from flask_cors import CORS
-from nirf import nirf_final
+from nirf100 import nirf
 from naac_exl import naac
 from bs4 import BeautifulSoup as b
 
