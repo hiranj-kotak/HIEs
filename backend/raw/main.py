@@ -1,7 +1,7 @@
 from flask import Flask, jsonify, request
 # from backend.raw.nirf100 import validate_nirf
-from naac_exl2 import nirf, validate_nirf
-from naac_exl3 import validate_naac
+from nirf100 import  validate_nirf
+from naac_exl import validate_naac
 # from naac_exl2 import naac_2
 # from naac_exl3 import naac_3
 from flask_cors import CORS
