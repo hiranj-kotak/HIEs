@@ -1,3 +1,4 @@
+from ast import Return
 import requests
 from bs4 import BeautifulSoup as b
 
@@ -26,11 +27,11 @@ def nirf100(url):
         d1 = {
             "__id": "1",
             "instituteName": "CHARUSAT",
-            "NIRFrank": "1"
+            "NIRF": "1"
         }
         d1["__id"] = list[i]
         d1["instituteName"] = data1[i]
-        d1["NIRFrank"] = list[i]
+        d1["NIRF"] = list[i]
         datas.append(d1)
 
     return datas
@@ -55,11 +56,11 @@ def nirf150(url):
         d1 = {
             "__id": "1",
             "instituteName": "CHARUSAT",
-            "NIRFrank": "1"
+            "NIRF": "1"
         }
         d1["__id"] = i + 101
         d1["instituteName"] = data[i]
-        d1["NIRFrank"] = "101 to 150"
+        d1["NIRF"] = "101 to 150"
         datas.append(d1)
     return datas
 
@@ -81,11 +82,11 @@ def nirf200(url):
         d1 = {
             "__id": "1",
             "instituteName": "CHARUSAT",
-            "NIRFrank": "1"
+            "NIRF": "1"
         }
         d1["__id"] = i + 151
         d1["instituteName"] = data[i]
-        d1["NIRFrank"] = "151 to 200"
+        d1["NIRF"] = "151 to 200"
         datas.append(d1)
     return datas
 
@@ -144,3 +145,44 @@ def nirf():
         d1[x]+=nirf200(y)
     return d1
 # nirf100()
+
+# print(hit)
+
+def validate_nirf(data):
+    hit = []
+    hit.append(nirf())
+    # print(data)
+    for x in hit[0]:
+        # print(x)
+        if(data["type"]==x):
+            # print(data["type"])
+            for y in hit[0][x]:
+                # print(y)
+                # print(hit[0][x]['instituteName'])
+                if(data['instituteName'] == y['instituteName']):
+                    # print(data['instituteName'])
+                    # print(int(data['NIRF']))
+                    if(int(data['NIRF'])<101):
+                        # print(data['NIRF']==y['NIRFrank'])
+                        if(int(data['NIRF'])==y['NIRF']):
+                            y['NIRF']=data['NIRF']
+                            return y
+                        else:
+                            print(y)
+                            return "NIRF rank is Wrong"
+                    elif(int(data['NIRF'])>100 and int(data['NIRF'])<151):
+                        if("101 to 150"==y['NIRF']):
+                            return y
+                        else:
+                            return "NIRF rank is Wrong"
+                    elif(int(data['NIRF']) > 150 and 201 > int(data['NIRF'])):
+                        if("151 to 200"==y['NIRF']):
+                            return y
+                        else:
+                            data['NIRF']="NIRF rank is Wrong"
+                            print(data)
+                            return data
+                else:
+                    data['NIRF']="your college is not in nirf ranking"
+                    print(data)
+                    return data
