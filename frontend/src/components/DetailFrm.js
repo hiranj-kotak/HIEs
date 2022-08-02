@@ -6,35 +6,7 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Card from "react-bootstrap/Card";
 import BGimg from "../assets/BG2.jpg";
-import axios from "axios";
-
-const NAAC_URL = "http://127.0.0.1:5000/api1";
-const NIRF_URL = "http://127.0.0.1:5000/api1";
-let options;
-let NAAC_DATA;
-let NIRF_DATA;
-
-options = { method: "GET", url: NAAC_URL };
-axios
-    .request(options)
-    .then(function (response) {
-        NAAC_DATA = response.data;
-        console.log(NAAC_DATA);
-    })
-    .catch(function (error) {
-        console.error(error);
-    });
-
-options = { method: "GET", url: NIRF_URL };
-axios
-    .request(options)
-    .then(function (response) {
-        NIRF_DATA = response.data;
-        console.log(NIRF_DATA);
-    })
-    .catch(function (error) {
-        console.error(error);
-    });
+// import axios from "axios";
 
 const institutes = [
     "university",
@@ -68,7 +40,7 @@ const DetailFrm = () => {
                     <Card.Img variant="top" src={BGimg} />
                     <Card.Body>
                         <Card.Title>Enter Yout collage details here</Card.Title>
-                        <Form>
+                        <Form method="POST">
                             <Row className="mb-3">
                                 <Form.Group as={Col} controlId="instituteName">
                                     <Form.Label>Institute Name</Form.Label>
