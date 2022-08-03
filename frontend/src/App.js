@@ -3,10 +3,10 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import "react-bootstrap";
 import Home from "./components/Home";
-import Login from "./components/Login";
+import Signin from "./components/Signin";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
-import Register from "./components/Register";
+import Signup from "./components/Signup";
 import Showrank from "./components/Showrank";
 import DetailFrm from "./components/DetailFrm";
 
@@ -18,8 +18,8 @@ function App() {
                 <Routes>
                     <Route exact path="/" element={<Home />} />
                     <Route exact path="detail" element={<Showrank />} />
-                    <Route exact path="login" element={<Login />} />
-                    <Route exact path="register" element={<Register />} />
+                    <Route exact path="signin" element={<Signin />} />
+                    <Route exact path="signup" element={<Signup />} />
                     <Route exact path="detailsfrm" element={<DetailFrm />} />
                 </Routes>
             </Router>

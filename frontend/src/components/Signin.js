@@ -5,10 +5,7 @@ import withReactContent from "sweetalert2-react-content";
 import validator from "email-validator";
 //
 import Button from "react-bootstrap/Button";
-import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
-import Card from "react-bootstrap/Card";
-import loginImg from "../assets/loginPencil.jpg";
 
 const Login = () => {
     const MySwal = withReactContent(Swal);
@@ -62,58 +59,74 @@ const Login = () => {
             navigate("/");
         }
     };
+    const nevToUp = (e) => {
+        e.preventDefault();
+        navigate("/signup");
+    };
     return (
-        <>
-            <Container className="my-5 d-flex justify-content-center">
-                <Card style={{ width: "38rem" }}>
-                    <Card.Img variant="top" src={loginImg} />
-                    <Card.Body>
-                        <Card.Title>Login</Card.Title>
-                        <Form>
-                            <Form.Group
-                                className="mb-3"
-                                controlId="formBasicEmail"
-                            >
-                                <Form.Label>Email address</Form.Label>
-                                <Form.Control
+        <div className="modal modal-signin position-static d-block bg-none py-5">
+            <div className="modal-dialog">
+                <div className="modal-content bordeer border-0 rounded-4 shadow">
+                    <div className="modal-header p-5 pb-4 border-bottom-0">
+                        <h2 className="fw-bold mb-0">Sign in here</h2>
+                    </div>
+                    <div className="modal-body p-5 pt-0">
+                        <form className="">
+                            <div className="form-floating mb-3">
+                                <input
                                     type="email"
-                                    placeholder="Enter email"
+                                    className="form-control rounded-3"
+                                    placeholder="name@example.com"
                                     name="email"
                                     autoComplete="off"
                                     value={user.email}
                                     onChange={handleInputs}
                                 />
+                                <label htmlFor="floatingInput">
+                                    Email address
+                                </label>
                                 <Form.Text className="text-muted">
                                     We'll never share your email with anyone
                                     else.
                                 </Form.Text>
-                            </Form.Group>
-                            <Form.Group
-                                className="mb-3"
-                                controlId="formBasicPassword"
-                            >
-                                <Form.Label>Password</Form.Label>
-                                <Form.Control
+                            </div>
+                            <div className="form-floating mb-3">
+                                <input
                                     type="password"
+                                    className="form-control rounded-3"
                                     placeholder="Password"
                                     name="password"
                                     autoComplete="off"
                                     value={user.password}
                                     onChange={handleInputs}
                                 />
-                            </Form.Group>
-                            <Button
-                                variant="primary"
+                                <label htmlFor="floatingPassword">
+                                    Password
+                                </label>
+                            </div>
+                            <button
+                                className="w-100 mb-2 btn btn-lg rounded-3 btn-primary"
                                 type="submit"
                                 onClick={postData}
                             >
-                                Login
+                                Sign in
+                            </button>
+                            <Form.Text className="text-muted">
+                                By clicking Sign up, you agree to the terms of
+                                use.
+                            </Form.Text>
+                            <hr className="my-4" />
+                            <Button
+                                className="w-100 mb-2 btn btn-lg rounded-3 btn-primary"
+                                onClick={nevToUp}
+                            >
+                                Or Sign up here
                             </Button>
-                        </Form>
-                    </Card.Body>
-                </Card>
-            </Container>
-        </>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     );
 };
 

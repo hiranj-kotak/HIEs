@@ -29,11 +29,11 @@ const navbar = () => {
                             <Nav.Link href="">Check Detail here</Nav.Link>
                         </LinkContainer>
                     </Nav>
-                    <LinkContainer to="/login">
-                        <Button variant="outline-light" className="mx-3">Login</Button>
+                    <LinkContainer to="/signin">
+                        <Button variant="outline-light" className="mx-3">Sign In</Button>
                     </LinkContainer>
-                    <LinkContainer to="/register">
-                        <Button variant="outline-light">Register</Button>
+                    <LinkContainer to="/signup">
+                        <Button variant="outline-light">Sign up</Button>
                     </LinkContainer>
                 </Navbar.Collapse>
             </Container>
