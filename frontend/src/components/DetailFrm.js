@@ -88,56 +88,70 @@ const DetailFrm = () => {
     return (
         <>
             <Container className="my-5 d-flex justify-content-center">
-                <Card style={{ width: "58rem" }}>
-                    <Card.Img variant="top" src={BGimg} />
+                <Card
+                    style={{ width: "38rem" }}
+                    className="modal-content bordeer border-0 rounded-4 shadow p-4"
+                >
+                    {/* <Card.Img variant="top" src={BGimg} /> */}
                     <Card.Body>
-                        <Card.Title>Enter Yout collage details here</Card.Title>
+                        <Card.Title>
+                            <h1 className="fw-bold mb-4">
+                                Enter institute details here
+                            </h1>
+                        </Card.Title>
                         <Form method="POST">
-                            <Row className="mb-3">
-                                <Form.Group as={Col} controlId="instituteName">
-                                    <Form.Label>Institute Type</Form.Label>
-                                    <Form.Select
-                                        aria-label="Default select example"
-                                        name="type"
-                                        autoComplete="off"
-                                        value={detail.type}
-                                        onChange={handleInputs}
-                                    >
-                                        <option value="university">
-                                            University
-                                        </option>
-                                        <option value="collage">Collage</option>
-                                    </Form.Select>
-                                </Form.Group>
-                                <Form.Group as={Col} controlId="instituteName">
-                                    <Form.Label>Institute Name</Form.Label>
-                                    <Form.Control
-                                        type="text"
-                                        placeholder="Institute name"
-                                        name="institute"
-                                        autoComplete="off"
-                                        value={detail.institute}
-                                        onChange={handleInputs}
-                                    />
-                                </Form.Group>
-                                <Form.Group as={Col} controlId="instituteType">
-                                    <Form.Label>Institute Sub Type</Form.Label>
-                                    <Form.Select
-                                        aria-label="Default select example"
-                                        name="subtype"
-                                        autoComplete="off"
-                                        value={detail.subtype}
-                                        onChange={handleInputs}
-                                        disabled={detail.type !== "collage"}
-                                    >
-                                        {institutes}
-                                    </Form.Select>
-                                </Form.Group>
-                            </Row>
+                            <Form.Group as={Col} controlId="instituteName">
+                                <Form.Label>Institute Type</Form.Label>
+                                <Form.Select
+                                    size="lg"
+                                    className="mb-3"
+                                    aria-label="Default select example"
+                                    name="type"
+                                    autoComplete="off"
+                                    value={detail.type}
+                                    onChange={handleInputs}
+                                >
+                                    <option value="university">
+                                        University
+                                    </option>
+                                    <option value="collage">Collage</option>
+                                </Form.Select>
+                            </Form.Group>
+                            <Form.Group as={Col} controlId="instituteName">
+                                <Form.Label>Institute Name</Form.Label>
+                                <Form.Control
+                                    size="lg"
+                                    className="mb-3"
+                                    type="text"
+                                    placeholder="Institute name"
+                                    name="institute"
+                                    autoComplete="off"
+                                    value={detail.institute}
+                                    onChange={handleInputs}
+                                />
+                            </Form.Group>
+                            <Form.Group as={Col} controlId="instituteType">
+                                <Form.Label>Institute Sub Type</Form.Label>
+                                <Form.Select
+                                    size="lg"
+                                    className="mb-3"
+                                    aria-label="Default select example"
+                                    name="subtype"
+                                    autoComplete="off"
+                                    value={detail.subtype}
+                                    onChange={handleInputs}
+                                    disabled={detail.type !== "collage"}
+                                >
+                                    {institutes}
+                                </Form.Select>
+                            </Form.Group>
+
                             <Row className="mb-3">
                                 <Form.Group as={Col} controlId="formGridEmail">
                                     <Form.Label>NIRF Rank</Form.Label>
                                     <Form.Control
+                                        size="lg"
+                                        className="mb-3"
                                         type="number"
                                         placeholder="NIRF Rank"
                                         name="NIRF"
@@ -149,6 +163,8 @@ const DetailFrm = () => {
                                 <Form.Group as={Col} controlId="formGridEmail">
                                     <Form.Label>NBA Rank</Form.Label>
                                     <Form.Control
+                                        size="lg"
+                                        className="mb-3"
                                         type="text"
                                         placeholder="NBA Rank"
                                         name="NBA"
@@ -164,6 +180,8 @@ const DetailFrm = () => {
                                 >
                                     <Form.Label>NAAC Rank</Form.Label>
                                     <Form.Control
+                                        size="lg"
+                                        className="mb-3"
                                         type="text"
                                         placeholder="NAAC Rank"
                                         name="NAAC"
@@ -174,6 +192,8 @@ const DetailFrm = () => {
                                 </Form.Group>
                             </Row>
                             <Button
+                                size="lg"
+                                className="w-100 mb-2 btn btn-lg rounded-3 btn-primary"
                                 variant="primary"
                                 type="submit"
                                 onClick={postData}
