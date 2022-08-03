@@ -12,6 +12,7 @@ from flask_cors import CORS
 app = Flask(__name__)
 
 CORS(app, resources={r"/nirf/": {"origins": "*"}})
+CORS(app, resources={r"/post/": {"origins": "*"}})
 # CORS(app, resources={r"/naac1/": {"origins": "*"}})
 # CORS(app, resources={r"/naac2/": {"origins": "*"}})
 # CORS(app, resources={r"/naac3/": {"origins": "*"}})
