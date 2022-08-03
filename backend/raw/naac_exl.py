@@ -163,9 +163,9 @@ def naac_3():
 # print(naac1())
 def naac():
     hit = []
-    hit.append(naac_1())
-    hit.append(naac_2())
-    hit.append(naac_3())
+    hit+=naac_1()
+    hit+=naac_2()
+    hit+=naac_3()
     # print(hit)
     return hit
 # naac()

@@ -5,6 +5,7 @@ from naac_exl import validate_naac
 # from naac_exl2 import naac_2
 # from naac_exl3 import naac_3
 from flask_cors import CORS
+from database import nirf_api
 
 # import requests
 # from bs4 import BeautifulSoup as b
@@ -20,12 +21,14 @@ CORS(app, resources={r"/post/": {"origins": "*"}})
 
 @app.route('/')
 def hello_world():
+
     return 'Hello, World!'
 
 
 @app.route('/nirf/', methods=['GET'])
 def nirf1():
     data100 = nirf()
+
     # data150 = nirf150()
     # data1.headers.add('Access-Control-Allow-Origin', '*')
     # print(data1)
