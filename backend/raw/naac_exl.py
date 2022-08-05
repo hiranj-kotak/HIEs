@@ -26,12 +26,12 @@ def naac_1():
         del data2[0]
     data_new = []
     for item in data:
-        a = item
-        list = a.split(",")
-        list1 = list[0].split("[")
-        list2 = list1[0].split("(")
-        list3 = list2[0].split("\n")
-        data_new.append(list3[0])
+        # a = item
+        # list = a.split(",")
+        # list1 = list[0].split("[")
+        # list2 = list1[0].split("(")
+        # list3 = list2[0].split("\n")
+        data_new.append(item)
     # d = dict(zip(data_new, data1))
     # print(d)
     # return d
@@ -73,13 +73,13 @@ def naac_2():
     del data2[0]
     data_new = []
     for item in data:
-        a = item
-        list = a.split(",")
-        list1 = list[0].split("[")
-        list2 = list1[0].split("(")
-        list3 = list2[0].split("\n")
-        list4 = list3[0].split("–")
-        data_new.append(list4[0])
+        # a = item
+        # list = a.split(",")
+        # list1 = list[0].split("[")
+        # list2 = list1[0].split("(")
+        # list3 = list2[0].split("\n")
+        # list4 = list3[0].split("–")
+        data_new.append(item)
     # d = dict(zip(data_new, data1))
     # print(d)
     # return d
@@ -131,11 +131,11 @@ def naac_3():
     data_new = []
     for item in data:
         a = item
-        list = a.split(",")
-        list1 = list[0].split("[")
-        list2 = list1[0].split("(")
-        list3 = list2[0].split("\n")
-        data_new.append(list3[0])
+        # list = a.split(",")
+        # list1 = list[0].split("[")
+        # list2 = list1[0].split("(")
+        # list3 = list2[0].split("\n")
+        data_new.append(item)
     # d = dict(zip(data_new, data1))
     # print(d)
     # return d
@@ -168,21 +168,17 @@ def naac():
     hit+=naac_3()
     # print(hit)
     return hit
-# naac()
-def validate_naac(data):
-    hit=naac()
-    # print(hit)
-    i=0
-    while(i<3):
-        for x in hit[i]:
-            if (data['instituteName'] == x['instituteName']):
-                if(data['NAAC_grade'] == x['NAAC_grade']):
-                    return x
-                else:
-                    data['NAAC_grade'] ="your Grade is not match"
-                    return data
-        i=i+1
-    data['NAAC_grade']="your college is not in list"
-    return data
-# validate_naac()
 
+with open("naac.txt", "w") as external_file:
+    print(naac(), file=external_file)
+    external_file.close()
+
+
+print(naac())
+# def validate_naac(data):
+#     hit=naac()
+#     for i in hit:
+#         if i["instituteName"] == data:
+#             return i
+# a= validate_naac("NIRMA UNIVERSITY")
+# print(a)

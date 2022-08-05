@@ -3,7 +3,7 @@ from nirf100 import  nirf
 from naac_exl import naac
 # from nirf100 import  nirf
 # from naac_exl import naac
-client = pymongo.MongoClient('mongodb://localhost:27017/')
+client = pymongo.MongoClient("mongodb+srv://sgp:h@cluster0.1dchegy.mongodb.net/?retryWrites=true&w=majority")
 db = client['HEIS']
 collection=db['college_data']
 collection1 = db['nirf_api']
@@ -38,15 +38,15 @@ def find(name):
     data = collection.find_one({"instituteName": name})
     return data
 
-if __name__ == "__main__":
-    data100 = []
+# if __name__ == "__main__":
+#     data100 = []
     data100.append(nirf())
     nirf_api(data100)
-    # print(data100)
-    data200=naac()
-    # print(len(data200))
+#     # print(data100)
+#     data200=naac()
+#     # print(len(data200))
     naac_api(data200)
     # print(data200)
-    # a= collection3.find()
-    # for i in a:
-    #     print(i)
+#     # a= collection3.find()
+#     for i in a:
+#         print(i)
