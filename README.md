@@ -11,4 +11,4 @@ Hei will enter the details
 ## To do:
 1. We have to store this data in database and verify the input data on their respective sites
 2. To display to 3rd party agencies
-3. Modify access according user
+3. Modify access according users
