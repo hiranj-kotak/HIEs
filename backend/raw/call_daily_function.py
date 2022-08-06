@@ -1,6 +1,6 @@
 from naac_exl import naac
 from nirf100 import nirf
-from add_nirf_api_to_database import nirf_database,naac_database
+from update_naac_and_nirf_database import nirf_database,naac_database
 import schedule
 import time
 
