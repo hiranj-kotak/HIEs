@@ -1,11 +1,8 @@
 from flask import Flask, jsonify, request
-# from backend.raw.nirf100 import validate_nirf
 from nirf100 import  nirf,validate_nirf
 from naac_exl import validate_naac
-# from naac_exl2 import naac_2
-# from naac_exl3 import naac_3
 from flask_cors import CORS
-from database import nirf_api
+# from database import nirf_api
 
 # import requests
 # from bs4 import BeautifulSoup as b
@@ -13,7 +10,7 @@ from database import nirf_api
 app = Flask(__name__)
 
 CORS(app, resources={r"/nirf/": {"origins": "*"}})
-CORS(app, resources={r"/post/": {"origins": "*"}})
+CORS(app, resources={r"/college/": {"origins": "*"}})
 # CORS(app, resources={r"/naac1/": {"origins": "*"}})
 # CORS(app, resources={r"/naac2/": {"origins": "*"}})
 # CORS(app, resources={r"/naac3/": {"origins": "*"}})
@@ -53,8 +50,8 @@ def nirf1():
 #     data4 = naac_3()
 #     return jsonify(data4)
 
-@app.route('/post/' ,methods=['POST'])
-def post():
+@app.route('/college/' ,methods=['POST'])
+def get_detail_of_college():
     content=request.get_json()
     # print(content)
     data0=validate_nirf(content)

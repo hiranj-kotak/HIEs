@@ -174,7 +174,7 @@ with open("naac.txt", "w") as external_file:
     external_file.close()
 
 
-print(naac())
+# print(naac())
 # def validate_naac(data):
 #     hit=naac()
 #     for i in hit:
