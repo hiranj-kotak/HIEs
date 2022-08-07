@@ -1,6 +1,6 @@
 import pymongo
 from nirf100 import  nirf
-from naac_exl import naac
+
 # from nirf100 import  nirf
 # from naac_exl import naac
 client = pymongo.MongoClient("mongodb+srv://sgp:h@cluster0.1dchegy.mongodb.net/?retryWrites=true&w=majority")
