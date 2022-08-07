@@ -87,7 +87,7 @@ for s in sheet:
         naac11.append(d1)
     naac1 += naac11
 
-# print(naac1)
+print(naac1)
 
 # cc = '3.05'
 # hello =[]

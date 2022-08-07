@@ -34,6 +34,7 @@ def nirf_database(data):
     collection_architecture.drop()
 
 
+
     collection_overall.insert_many(data['overall'])
     collection_university.insert_many(data['university'])
     collection_college.insert_many(data['college'])

@@ -24,7 +24,7 @@ def daily_update():
 
     while True:
         func()
-        print("run")
+        # print("run")
         time.sleep(86400)
 
 daily_update();
