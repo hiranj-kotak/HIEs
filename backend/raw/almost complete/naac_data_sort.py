@@ -1,10 +1,9 @@
 import spacy
 from openpyxl import load_workbook
-import json
 # from testcheck import naac
 # institute_name = input()
 nlp = spacy.load('en_core_web_sm')
-file_path = "Institutions_Accredited_by_NAAC_Whose_Accreditation_Period_Is_Valid_uploaded_1_8_2022.xlsx"
+file_path = "Institutions_accredited_by_NAAC_whose_accreditation_period_is_valid_08_07_22.xlsx"
 sheet = ['Universities','Colleges','Transition Autonomous Colleges']
 wb = load_workbook(file_path)
 naac1 = []
@@ -88,13 +87,9 @@ for s in sheet:
         naac11.append(d1)
     naac1 += naac11
 
-
 print(naac1)
 
-with open("naac1.json", "w") as external_file:
-    json.dump(naac1, external_file)
-    external_file.close()
-# cc = '3.33'
+# cc = '3.05'
 # hello =[]
 # for i in naac1:
 #     if (i['CGPA'] == cc):
