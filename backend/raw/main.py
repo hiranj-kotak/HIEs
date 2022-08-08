@@ -30,19 +30,19 @@ def user_signup():
     return value
 
 @app.route('/user_signin/', methods=['POST'])
-def user_signup():
+def user_signin():
     data=request.get_json();
     value=sign_in(data)
     return value
 
 @app.route('/college_signup/', methods=['POST'])
-def user_signup():
+def college_signup():
     data=request.get_json();
     value=college_sign_up(data)
     return value
 
 @app.route('/college_signin/', methods=['POST'])
-def user_signup():
+def college_signin():
     data=request.get_json();
     value=college_sign_in(data)
     return value

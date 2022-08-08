@@ -14,9 +14,11 @@ auth = firebase.auth()
 def college_sign_up(data):
   try:
     auth.create_user_with_email_and_password(data['username'],data['password'])
+    data['value'] = "True"
     return data
   except:
-    return "username or password are not in correct way"
+    data['value'] = "username or password are not in correct way"
+    return data
 
 
 
@@ -27,10 +29,12 @@ def college_sign_in(data):
   try:
     # auth.sign_in_with_email_and_password(data['username'],data['password'])
     auth.sign_in_with_email_and_password(e,p)
+    data['value'] = "True"
     return data
   except:
     # print("invalid username of password")
-    return "invalid username of password"
+    data['value'] = "invalid username of password"
+    return data
 #
 # d1 = {
 #   "username": "hiranj@gmail.com" ,
