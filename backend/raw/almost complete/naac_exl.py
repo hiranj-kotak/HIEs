@@ -1,6 +1,6 @@
 from openpyxl import load_workbook
 def naac_1():
-    file_path = "../Institutions_accredited_by_NAAC_whose_accreditation_period_is_valid_08_07_22.xlsx"
+    file_path = "Institutions_accredited_by_NAAC_whose_accreditation_period_is_valid_08_07_22.xlsx"
     wb = load_workbook(file_path)
     ws = wb["Universities"]
     coloum = ws['C']
@@ -48,7 +48,7 @@ def naac_1():
     return naac_grades
 
 def naac_2():
-    file_path = "../Institutions_accredited_by_NAAC_whose_accreditation_period_is_valid_08_07_22.xlsx"
+    file_path = "Institutions_accredited_by_NAAC_whose_accreditation_period_is_valid_08_07_22.xlsx"
     wb = load_workbook(file_path)
     ws = wb["Colleges"]
     coloum = ws['B']
@@ -104,7 +104,7 @@ def naac_2():
 
     return naac_grades
 def naac_3():
-    file_path = "../Institutions_accredited_by_NAAC_whose_accreditation_period_is_valid_08_07_22.xlsx"
+    file_path = "Institutions_accredited_by_NAAC_whose_accreditation_period_is_valid_08_07_22.xlsx"
     wb = load_workbook(file_path)
     ws = wb["Transition Autonomous Colleges"]
     coloum = ws['C']

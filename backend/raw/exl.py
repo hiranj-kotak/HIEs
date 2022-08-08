@@ -1,5 +1,5 @@
 from openpyxl import load_workbook
-file_path = "Institutions_accredited_by_NAAC_whose_accreditation_period_is_valid_08_07_22.xlsx"
+file_path = "almost complete/Institutions_accredited_by_NAAC_whose_accreditation_period_is_valid_08_07_22.xlsx"
 wb = load_workbook(file_path)
 ws = wb["Universities"]
 
