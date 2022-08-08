@@ -11,15 +11,15 @@ def college_data_entry(data):
     college.insert_one(data)
     datas=college.find_one({"instituteName":data["instituteName"]},{"_id":1})
 
-    ids=str(datas["_id"])
-    print(ids)
-    return jsonify(ids)
+    # ids=str(datas["_id"])
+    # print(ids)
+    return datas
 
 
 
-d={
-"instituteName": "NIRMA UNIVERSITY",
-}
-college_data_entry(d)
+# d={
+# "instituteName": "NIRMA UNIVERSITY",
+# }
+# print(college_data_entry(d))
 
 # ata =collection_nqm.find_one({'name':data['name']},{'_id':0})
