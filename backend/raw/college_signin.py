@@ -31,15 +31,15 @@ def college_sign_in(data):
   except:
     # print("invalid username of password")
     return "invalid username of password"
-
-d1 = {
-  "username": "hiranj@gmail.com" ,
-  "password" : "hii"
-}
-d2={
-"username": "t@gmail.com" ,
-  "password" :"123456"
-}
+#
+# d1 = {
+#   "username": "hiranj@gmail.com" ,
+#   "password" : "hii"
+# }
+# d2={
+# "username": "t@gmail.com" ,
+#   "password" :"123456"
+# }
 # print(college_sign_up(d2))
 # print(college_sign_in(d2))
 

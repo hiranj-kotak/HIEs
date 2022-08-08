@@ -4,7 +4,7 @@ from flask_cors import CORS
 # from database import nirf_api
 from naac_data_sort import naac_sort
 from college_database import college_data_entry
-from login_signup import sign_up,sign_in
+from user_login import sign_up,sign_in
 from college_signin import college_sign_up,college_sign_in
 
 app = Flask(__name__)
