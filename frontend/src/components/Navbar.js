@@ -30,7 +30,9 @@ const navbar = () => {
                         </LinkContainer>
                     </Nav>
                     <LinkContainer to="/signin">
-                        <Button variant="outline-light" className="mx-3">Sign In</Button>
+                        <Button variant="outline-light" className="mx-3">
+                            Sign In
+                        </Button>
                     </LinkContainer>
                     <LinkContainer to="/signup">
                         <Button variant="outline-light">Sign up</Button>

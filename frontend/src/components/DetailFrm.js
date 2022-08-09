@@ -11,7 +11,6 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Card from "react-bootstrap/Card";
 // assets imports
-import BGimg from "../assets/BG2.jpg";
 
 const institutes = [
     "architecture",

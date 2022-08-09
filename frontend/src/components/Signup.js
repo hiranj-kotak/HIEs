@@ -5,11 +5,8 @@ import withReactContent from "sweetalert2-react-content";
 import validator from "email-validator";
 // bootstrap Imports
 import Button from "react-bootstrap/Button";
-import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
-import Card from "react-bootstrap/Card";
 // assets imports
-import loginImg from "../assets/loginPencil.jpg";
 
 const REgister = () => {
     const MySwal = withReactContent(Swal);
