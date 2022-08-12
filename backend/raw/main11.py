@@ -1,13 +1,16 @@
-from flask import Flask, request,jsonify
-import pyrebase,jwt
 from functools import wraps
-
+import pyrebase
+from flask import Flask, request
 # from nirf100 import  nirf
 from flask_cors import CORS
 # from database import nirf_api
 from user_login import sign_up,sign_in
 from college_signin import college_sign_up,college_sign_in
 
+import pyrebase
+# import uuid
+
+# uid='name'
 
 firebaseConfig = {
   'apiKey': "AIzaSyC9va0H2T7oM-8fVnubEou9cYP9k7iaVVo",
@@ -32,30 +35,22 @@ CORS(app, resources={r"/college_detail/": {"origins": "*"}})
 CORS(app, resources={r"/user_search/": {"origins": "*"}})
 # CORS(app, resources={r"/user/": {"origins": "*"}})
 
-def token_required(f):
+def check_token(f):
     @wraps(f)
-    def decorated(*args, **kwargs):
-        token = None
-
-        if 'token' in request.headers:
-            token = request.headers['token']
-
-        if not token:
-            return jsonify({'message' : 'Token is missing!'}), 401
-
+    def wrap(*args,**kwargs):
+        if not request.headers.get('idToken'):
+            return {'message': 'No token provided'},400
         try:
-
-            # data = jwt.decode(token)
-            # current_user = User.query.filter_by(public_id=data['public_id']).first()
+            print(request.headers['idToken'])
+            user = auth.verify_id_token(request.headers['idToken'])
+            request.user = user
         except:
-            return jsonify({'message' : 'Token is invalid!'}), 401
-
-        return f(current_user, *args, **kwargs)
-
-    return decorated
+            return {'message':'Invalid token provided.'},400
+        return f(*args, **kwargs)
+    return wrap
 
 @app.route('/')
-@token_required
+@check_token
 def hello_world():
     return 'Hello, World!'
 
@@ -66,6 +61,7 @@ def user_signup():
     return value
 
 @app.route('/user_signin/', methods=['POST'])
+@check_token
 def user_signin():
     data=request.get_json();
     value=sign_in(data)
