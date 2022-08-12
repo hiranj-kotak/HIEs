@@ -1,6 +1,8 @@
 from ast import Return
 import requests
 from bs4 import BeautifulSoup as b
+from backend.raw.main1 import create_token_nirf
+import json
 
 
 def nirf100(url):
@@ -18,7 +20,8 @@ def nirf100(url):
     data1 = []
     for i in range(len(data)):
         if i % 3 == 0:
-            data1.append(data[i])
+            ans = create_token_nirf(data[i])
+            data1.append(ans)
     list = []
     for i in range(1, len(data1) + 1):
         list.append(i)
@@ -58,8 +61,9 @@ def nirf150(url):
             "instituteName": "CHARUSAT",
             "NIRF": "1"
         }
+        ans = create_token_nirf(data[i])
         d1["__id"] = i + 101
-        d1["instituteName"] = data[i]
+        d1["instituteName"] = ans
         d1["NIRF"] = "101 to 150"
         datas.append(d1)
     return datas
@@ -84,8 +88,9 @@ def nirf200(url):
             "instituteName": "CHARUSAT",
             "NIRF": "1"
         }
+        ans = create_token_nirf(data[i])
         d1["__id"] = i + 151
-        d1["instituteName"] = data[i]
+        d1["instituteName"] = ans
         d1["NIRF"] = "151 to 200"
         datas.append(d1)
     return datas
@@ -147,13 +152,12 @@ def nirf():
 # nirf100()
 
 # print(hit)
-#
+
+print(nirf())
+with open("../nirf.json", "w") as external_file:
+            json.dump(nirf(),external_file)
+            external_file.close()
 '''don't call function for getting data always collect data from their .TXT file'''
-
-
-
-
-
 
 
 
