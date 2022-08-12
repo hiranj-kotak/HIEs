@@ -1,9 +1,29 @@
+from functools import wraps
+import pyrebase
 from flask import Flask, request
 # from nirf100 import  nirf
 from flask_cors import CORS
 # from database import nirf_api
 from user_login import sign_up,sign_in
 from college_signin import college_sign_up,college_sign_in
+
+import pyrebase
+# import uuid
+
+# uid='name'
+
+firebaseConfig = {
+  'apiKey': "AIzaSyC9va0H2T7oM-8fVnubEou9cYP9k7iaVVo",
+  'authDomain': "project1-92696.firebaseapp.com",
+  'projectId': "project1-92696",
+  'storageBucket': "project1-92696.appspot.com",
+  'messagingSenderId': "602240743751",
+  'appId': "1:602240743751:web:85e0cdca6e1943da997462",
+  'measurementId': "G-SZBKNHT6RF",
+  "databaseURL" : ""
+}
+firebase = pyrebase.initialize_app(firebaseConfig)
+auth = firebase.auth()
 
 app = Flask(__name__)
 
@@ -15,9 +35,22 @@ CORS(app, resources={r"/college_detail/": {"origins": "*"}})
 CORS(app, resources={r"/user_search/": {"origins": "*"}})
 # CORS(app, resources={r"/user/": {"origins": "*"}})
 
-
+def check_token(f):
+    @wraps(f)
+    def wrap(*args,**kwargs):
+        if not request.headers.get('idToken'):
+            return {'message': 'No token provided'},400
+        try:
+            print(request.headers['idToken'])
+            user = auth.verify_id_token(request.headers['idToken'])
+            request.user = user
+        except:
+            return {'message':'Invalid token provided.'},400
+        return f(*args, **kwargs)
+    return wrap
 
 @app.route('/')
+@check_token
 def hello_world():
     return 'Hello, World!'
 
@@ -28,6 +61,7 @@ def user_signup():
     return value
 
 @app.route('/user_signin/', methods=['POST'])
+@check_token
 def user_signin():
     data=request.get_json();
     value=sign_in(data)
