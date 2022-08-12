@@ -1,5 +1,6 @@
 import React from "react";
-import Showrank from "./Showrank";
+import { Container } from "react-bootstrap";
+import DetailTable from "./DetailTable";
 
 const Home = () => {
     return (
@@ -9,7 +10,9 @@ const Home = () => {
                 <div class="product-device shadow-sm d-none d-md-block"></div>
                 <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
             </div>
-            <Showrank />
+            <Container className="mt-5">
+                <DetailTable/>
+            </Container>
         </>
     );
 };
