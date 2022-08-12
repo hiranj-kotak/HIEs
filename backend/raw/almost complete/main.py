@@ -5,6 +5,7 @@ from flask_cors import CORS
 from user_data import users
 from user_login import sign_up, sign_in
 from college_signin import college_sign_up, college_sign_in
+from backend.raw.main1 import validate_naac_grade,validate_nirf_rank
 
 app = Flask(__name__)
 
@@ -56,7 +57,7 @@ def college_signin():
     return value
 
 
-@app.route('/college_detail/', methods=['POST'])
+@app.route('/college_detail/', methods=['POST','GET'])
 def get_detail_of_college():
     content = request.get_json()
     # print(content)
@@ -71,6 +72,13 @@ def get_detail_of_college():
     #     "type": content['type']
     # }
     # return data1
+    confirm1 = validate_naac_grade(content)
+    confirm2 = validate_nirf_rank(content)
+
+    if confirm1 == True and confirm2 == True:
+        return content
+    else:
+        return "Wrong Data"
 
 
 @app.route('/user_search/', methods=['POST'])
