@@ -2,6 +2,7 @@ from flask import Flask, request
 # from nirf100 import  nirf
 from flask_cors import CORS
 # from database import nirf_api
+from user_data import users
 from user_login import sign_up, sign_in
 from college_signin import college_sign_up, college_sign_in
 
@@ -27,6 +28,10 @@ def hello_world():
 def user_signup():
     data = request.get_json();
     value = sign_up(data)
+    print(value)
+    if(value['value']=="True"):
+        value=users(value)
+    # # print(value)
     return value
 
 

@@ -13,8 +13,8 @@ firebase = pyrebase.initialize_app(firebaseConfig)
 auth = firebase.auth()
 def sign_up(data):
   try:
-    user=auth.create_user_with_email_and_password(data['username'],data['password'])
-    # data['value'] = "True"
+    user=auth.create_user_with_email_and_password(data['email'],data['password'])
+    user['value'] = "True"
     return user
   except:
     data['value'] = "username or password are not in correct way"
@@ -22,12 +22,13 @@ def sign_up(data):
 
 def sign_in(data):
   # print(data['username'])
-  e=data['username']
+  e=data['email']
   p=data['password']
   try:
     # auth.sign_in_with_email_and_password(data['username'],data['password'])
     hii=auth.sign_in_with_email_and_password(e,p)
     data['value']="True"
+
     return hii
   except:
     # print("invalid username of password")
