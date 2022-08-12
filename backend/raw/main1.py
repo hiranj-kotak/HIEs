@@ -40,13 +40,13 @@ def create_token_nirf(a):
     for i in tokens:
         ans+=i.lower().strip(".',( ")
     return ans
-def validate_naac_grade(ins_name,cgpa,naac_grade):
-    ans = create_token_naac(ins_name)
+def validate_naac_grade(input_data):
+    ans = create_token_naac(input_data["instituteName"])
     data = open_naac_json_fie()
     hello = []
     for i in data:
         # print(i)
-        if (i["CGPA"] == cgpa):
+        if (i["CGPA"] == input_data["CGPA"]):
             hello.append(i)
 
     # print(hello)
@@ -56,7 +56,7 @@ def validate_naac_grade(ins_name,cgpa,naac_grade):
             if (un['instituteName'] == ans):
                 rank = un
 
-    if rank['NAAC_grade'] == naac_grade:
+    if rank['NAAC_grade'] == input_data["NAAC_grade"]:
         return True
     else:
         return False
