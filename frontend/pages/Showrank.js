@@ -17,7 +17,7 @@ const Showrank = () => {
                 />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            s
+
             <Form.Group
                 as={Row}
                 className="mb-3"
