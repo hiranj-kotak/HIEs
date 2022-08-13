@@ -16,7 +16,7 @@ code {
 }
 
 .semi-bg {
-    background-image: url("./assets/hbg2.jpg");
+    background-image: url("../assets/hbg2.jpg");
     background-repeat: no-repeat;
     background-size: cover;
 }

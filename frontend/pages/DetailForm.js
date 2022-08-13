@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/router";
 import withReactContent from "sweetalert2-react-content";
 // import axios from "axios";
 // Bootstrap imports
@@ -31,7 +32,8 @@ const institutes = [
 
 const DetailFrm = () => {
     const MySwal = withReactContent(Swal);
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
+    const router = useRouter();
 
     let name, value;
 
@@ -78,7 +80,8 @@ const DetailFrm = () => {
                 text: `your detial submited successfully`,
             });
             // Send user to backend is remaining
-            navigate("/detail");
+            // navigate("/detail");
+            router.push("/detail");
         }
     };
 
