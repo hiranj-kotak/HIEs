@@ -173,4 +173,4 @@ def naac():
 #     print(naac(), file=external_file)
 #     external_file.close()
 
-'''don't call function for getting data always collect data from their .TXT file'''
+'''don't call function for getting data always collect data from their .JSON file'''

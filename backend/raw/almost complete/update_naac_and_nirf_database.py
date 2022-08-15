@@ -1,6 +1,6 @@
 import pymongo
 # from nirf100 import nirf
-from naac_exl import naac
+# from naac_exl import naac
 client = pymongo.MongoClient("mongodb+srv://HitKoladiya:hii@cluster0.lwkdtbn.mongodb.net/test")
 db = client['HEIS']
 

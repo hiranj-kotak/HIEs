@@ -1,7 +1,6 @@
-from ast import Return
 import requests
 from bs4 import BeautifulSoup as b
-from backend.raw.main1 import create_token_nirf
+from Search_And_Validate import create_token_nirf
 import json
 
 
@@ -154,10 +153,10 @@ def nirf():
 # print(hit)
 
 print(nirf())
-with open("../nirf.json", "w") as external_file:
+with open("nirf.json", "w") as external_file:
             json.dump(nirf(),external_file)
             external_file.close()
-'''don't call function for getting data always collect data from their .TXT file'''
+'''don't call function for getting data always collect data from their .JSON file'''
 
 
 
