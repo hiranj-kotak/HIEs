@@ -4,7 +4,7 @@ nlp = spacy.load('en_core_web_sm')
 
 
 def open_naac_json_fie():
-    with open("almost complete/naac1.json", "r") as external_file:
+    with open("naac1.json", "r") as external_file:
         data = json.load(external_file)
         external_file.close()
     return data
@@ -35,7 +35,7 @@ def create_token_naac(a):
 def create_token_nirf(a):
     doc = nlp(a)
     tokens = [token.text for token in doc]
-    lenn = len(tokens)
+    # lenn = len(tokens)
     ans = ""
     for i in tokens:
         ans+=i.lower().strip(".',( ")
@@ -71,7 +71,7 @@ def validate_nirf_rank(input_data):
         if rank <=100:
             final_data = list[rank]
             if final_data["instituteName"] == ans:
-                print(final_data)
+                # print(final_data)
                 return True
             else:
                 return False
@@ -84,13 +84,14 @@ def validate_nirf_rank(input_data):
                     return False
         return False
 
-# input_Data = {
-#   "instituteName": "national institute of technology patna",
-#   "type": "overall",
-#   "NIRF": "101 to 150",
-#   "NBA": "ds",
-#   "NAAC_grade": "A++",
-#     "CGPA":"3.56"
-# }
-#
-# validate_nirf_rank(input_Data)
+input_Data = {
+  "instituteName": "savi  trib aiphulepuneunive,rsity",
+  "type": "overall",
+  "NIRF": "25",
+  "NBA": "ds",
+  "NAAC_grade": "A++",
+    "CGPA":"3.56"
+}
+
+# print(validate_nirf_rank(input_Data))
+# print(validate_naac_grade(input_Data))
