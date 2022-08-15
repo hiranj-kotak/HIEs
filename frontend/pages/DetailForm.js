@@ -162,7 +162,6 @@ const DetailFrm = () => {
                                     <Form.Label>NIRF Rank</Form.Label>
                                     <Form.Control
                                         size="lg"
-                                        className="mb-3"
                                         type="number"
                                         placeholder="NIRF Rank"
                                         name="NIRF"
@@ -171,37 +170,20 @@ const DetailFrm = () => {
                                         onChange={handleInputs}
                                     />
                                 </Form.Group>
-                                <Form.Group as={Col} controlId="formGridEmail">
-                                    <Form.Label>NBA Rank</Form.Label>
-                                    <Form.Control
-                                        size="lg"
-                                        className="mb-3"
-                                        type="text"
-                                        placeholder="NBA Rank"
-                                        name="NBA"
-                                        autoComplete="off"
-                                        value={detail.NBA}
-                                        onChange={handleInputs}
-                                    />
-                                </Form.Group>
-
-                                <Form.Group
-                                    as={Col}
-                                    controlId="formGridPassword"
-                                >
-                                    <Form.Label>NAAC Rank</Form.Label>
-                                    <Form.Control
-                                        size="lg"
-                                        className="mb-3"
-                                        type="text"
-                                        placeholder="NAAC Rank"
-                                        name="NAAC"
-                                        autoComplete="off"
-                                        value={detail.NAAC}
-                                        onChange={handleInputs}
-                                    />
-                                </Form.Group>
                             </Row>
+                            <Form.Group controlId="formGridPassword">
+                                <Form.Label>NAAC Rank</Form.Label>
+                                <Form.Control
+                                    size="lg"
+                                    className="mb-3"
+                                    type="text"
+                                    placeholder="NAAC Rank"
+                                    name="NAAC"
+                                    autoComplete="off"
+                                    value={detail.NAAC}
+                                    onChange={handleInputs}
+                                />
+                            </Form.Group>
                             <Button
                                 size="lg"
                                 className="w-100 mb-2 btn btn-lg rounded-3 btn-primary"

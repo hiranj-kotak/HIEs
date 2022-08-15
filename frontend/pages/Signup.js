@@ -54,7 +54,7 @@ const REgister = () => {
             MySwal.fire({
                 icon: "error",
                 title: <p>Error!</p>,
-                text: "Password and confirm password must",
+                text: "Password and confirm password must be same",
             });
         } else {
             console.log(user);

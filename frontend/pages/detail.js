@@ -1,13 +1,66 @@
-import { Container } from "react-bootstrap";
-import Form from "react-bootstrap/Form";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import DetailTable from "./components/DetailTable";
+import React, { useState } from "react";
 import Head from "next/head";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
-const Showrank = () => {
+const detail = () => {
+    // let getData;
+    const MySwal = withReactContent(Swal);
+
+    const [user, setUser] = useState({
+        name: "",
+    });
+
+    const [getData, setGetData] = useState();
+
+    let name, value;
+
+    const handleInputs = (e) => {
+        // console.log(e);
+        name = e.target.name;
+        value = e.target.value;
+
+        setUser({ ...user, [name]: value });
+    };
+
+    const postData = async (e) => {
+        e.preventDefault();
+
+        const { name } = user;
+
+        if (!name) {
+            MySwal.fire({
+                icon: "error",
+                title: <p>Error!</p>,
+                text: "Please search something",
+            });
+        } else {
+            // fetch data from beckend
+            setGetData({
+                id: "longrandomstring123",
+                instituteName: "JayKeraliya",
+                NAAC: "A++",
+                NAACCgpa: "5.5",
+                NBA: "Not decided what to do",
+                NIRf: {
+                    Btech: "1",
+                    Pharmacy: "2",
+                    BSc: "3",
+                },
+            });
+        }
+    };
+
+    let nirf = ``;
+    if (getData) {
+        Object.keys(getData.NIRf).forEach(function (key) {
+            nirf += `${key} : ${getData.NIRf[key]}, `;
+        });
+        console.log(nirf);
+    }
+
     return (
-        <Container className="my-5">
+        <div className="modal modal-signin position-static d-block bg-none py-5">
             <Head>
                 <title>Create Next App</title>
                 <meta
@@ -16,23 +69,93 @@ const Showrank = () => {
                 />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <Form.Group
-                as={Row}
-                className="mb-3"
-                controlId="search"
-                style={{ width: "28rem" }}
-            >
-                <Form.Label column sm="2">
-                    Search
-                </Form.Label>
-                <Col sm="10">
-                    <Form.Control placeholder="Enter institute name" />
-                </Col>
-            </Form.Group>
+            <div className="modal-dialog">
+                <div className="modal-content bordeer border-0 rounded-4 shadow">
+                    <div className="modal-header p-5 pb-4 border-bottom-0">
+                        <h2 className="fw-bold mb-0">Search details...</h2>
+                    </div>
+                    <div className="modal-body p-5 pt-0">
+                        <form className="">
+                            <div className="form-floating mb-3">
+                                <input
+                                    type="name"
+                                    className="form-control rounded-3"
+                                    placeholder="name"
+                                    name="name"
+                                    autoComplete="off"
+                                    value={user.name}
+                                    onChange={handleInputs}
+                                />
+                                <label htmlFor="floatingInput">
+                                    Institute name
+                                </label>
+                            </div>
 
-            <DetailTable />
-        </Container>
+                            <button
+                                className="w-100 mb-2 btn btn-lg rounded-3 btn-primary"
+                                type="submit"
+                                onClick={postData}
+                            >
+                                Search
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div className="modal-dialog">
+                <div className="modal-content bordeer border-0 rounded-4 shadow">
+                    <div className="modal-header p-5 pb-4 border-bottom-0">
+                        <h2 className="fw-bold mb-0">
+                            {getData
+                                ? getData.instituteName
+                                : "Search somthing..."}
+                        </h2>
+                    </div>
+                    <div className="modal-body p-5 pt-0">
+                        {getData ? (
+                            <>
+                                <table className="p-5">
+                                    <tbody>
+                                        <tr>
+                                            <td className="pr-2">
+                                                {" "}
+                                                NAAC Grade
+                                            </td>
+                                            <td className="px-2"> : </td>
+                                            <td className="px-2">
+                                                {getData.NAAC}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td className="pr-2"> NAAC CGPA</td>
+                                            <td className="px-2"> : </td>
+                                            <td className="px-2">
+                                                {getData.NAACCgpa}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td className="pr-2"> NBA Rank</td>
+                                            <td className="px-2"> : </td>
+                                            <td className="px-2">
+                                                {getData.NBA}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div className="mt-5">
+                                    <h6 className="fw-bold mb-0">NIRF Rank</h6>
+                                    {nirf}
+                                </div>
+                            </>
+                        ) : (
+                            ""
+                        )}
+                    </div>
+                </div>
+            </div>
+        </div>
     );
 };
 
-export default Showrank;
+export default detail;

@@ -1,6 +1,4 @@
 import Head from "next/head";
-import { Container } from "react-bootstrap";
-import DetailTable from "../pages/components/DetailTable";
 
 export default function Home() {
     return (
@@ -18,9 +16,6 @@ export default function Home() {
                 <div className="product-device shadow-sm d-none d-md-block"></div>
                 <div className="product-device product-device-2 shadow-sm d-none d-md-block"></div>
             </div>
-            <Container className="mt-5">
-                <DetailTable />
-            </Container>
         </div>
     );
 }
