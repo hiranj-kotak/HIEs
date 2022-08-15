@@ -43,7 +43,6 @@ const DetailFrm = () => {
         subtype: "architecture",
         type: "university",
         NIRF: "",
-        NBA: "",
         NAAC: "",
     });
 
@@ -64,7 +63,7 @@ const DetailFrm = () => {
 
         const { institute, type, NIRF, NBA, NAAC } = detail;
 
-        if (!institute || !type || !NIRF || !NBA || !NAAC) {
+        if (!institute || !type || !NIRF || !NAAC) {
             MySwal.fire({
                 icon: "error",
                 title: <p>Error!</p>,
