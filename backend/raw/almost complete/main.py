@@ -5,7 +5,7 @@ from flask_cors import CORS
 from user_data import users
 from user_login import sign_up, sign_in
 from college_signin import college_sign_up, college_sign_in
-from backend.raw.main1 import validate_naac_grade,validate_nirf_rank
+from Search_And_Validate import validate_naac_grade,validate_nirf_rank
 
 app = Flask(__name__)
 
@@ -84,6 +84,7 @@ def get_detail_of_college():
 @app.route('/user_search/', methods=['POST'])
 def put_detail_of_college():
     content = request.get_json()
+
     return "hii"
 
 
