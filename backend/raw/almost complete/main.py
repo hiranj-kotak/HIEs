@@ -60,27 +60,21 @@ def college_signin():
 @app.route('/college_detail/', methods=['POST','GET'])
 def get_detail_of_college():
     content = request.get_json()
-    # print(content)
-    # data0=validate_nirf(content)
-    # data00=validate_naac(content)
-    # x=(str(data0["NIRFrank"]))
-    # print(data00)
-    # data1 = {
-    #     "NIRF": data0['NIRF'],
-    #     "NAAC_grade": data00['NAAC_grade'],
-    #     "instituteName": content['instituteName'],
-    #     "type": content['type']
-    # }
-    # return data1
-    confirm1 = validate_naac_grade(content)
-    confirm2 = validate_nirf_rank(content)
-
-    if confirm1 == True and confirm2 == True:
-        return content
-    else:
-        return "Wrong Data"
-
-
+    print(f"63 {content}")
+    if  content['NAAC']:
+        # print("nacc runned succesfully")
+        content = validate_naac_grade(content)
+        # print(content)
+    print(f"68 {content}")
+    print(content['NIRF'])
+    if  content['NIRF']:
+        print(f"71 {content}")
+        # print(content['NIRF'])
+        print( "nacc runned succesfully")
+        # {'B.tech': '1', 'Pharmacy': '2', 'B.Sc': '3'}
+        content = validate_nirf_rank(content)
+    print(content)
+    return content
 @app.route('/user_search/', methods=['POST'])
 def put_detail_of_college():
     content = request.get_json()
@@ -107,4 +101,16 @@ if __name__ == "__main__":
 #     print(data)
 #     return data
 # #
+#  print(content)
+    # data0=validate_nirf(content)
+    # data00=validate_naac(content)
+    # x=(str(data0["NIRFrank"]))
+    # print(data00)
+    # data1 = {
+    #     "NIRF": data0['NIRF'],
+    #     "NAAC_grade": data00['NAAC_grade'],
+    #     "instituteName": content['instituteName'],
+    #     "type": content['type']
+    # }
+    # return data1
 #
