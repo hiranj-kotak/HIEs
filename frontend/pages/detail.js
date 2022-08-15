@@ -3,7 +3,7 @@ import Head from "next/head";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
-const detail = () => {
+const Detail = () => {
     // let getData;
     const MySwal = withReactContent(Swal);
 
@@ -158,4 +158,4 @@ const detail = () => {
     );
 };
 
-export default detail;
+export default Detail;
