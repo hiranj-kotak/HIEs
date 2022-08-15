@@ -114,3 +114,18 @@ if __name__ == "__main__":
     # }
     # return data1
 #
+d1 = { "id": "longrandomstring123",
+    "instituteName": "NIrma UNiversity",
+    "NAAC": "A+",
+    "CGPA": "3.33",
+    "NBA": "Not decided what to do",
+    "NIRF":
+        {
+            "overall":"151 to 200",
+            "engineering":"125",
+            "management":"45",
+            "university":"101 to 150",
+            "pharmacy":"28",
+            "architecture":"21"
+        }
+}
