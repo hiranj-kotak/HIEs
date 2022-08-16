@@ -1,50 +1,64 @@
 import React, { useState } from "react";
 import Swal from "sweetalert2";
-// import { useNavigate } from "react-router-dom";
 import { useRouter } from "next/router";
 import withReactContent from "sweetalert2-react-content";
 import Head from "next/head";
-// import axios from "axios";
-// Bootstrap imports
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Card from "react-bootstrap/Card";
-// assets imports
-
-const institutes = [
-    "architecture",
-    "dental",
-    "engineering",
-    "law",
-    "managemnent",
-    "medical",
-    "pharmacy",
-    "research_institutes",
-].map((e) => {
-    return (
-        <option key={e} value={e}>
-            {e}
-        </option>
-    );
-});
 
 const DetailFrm = () => {
     const MySwal = withReactContent(Swal);
-    // const navigate = useNavigate();
-    const router = useRouter();
 
-    let name, value;
+    const institutes = [
+        "architecture",
+        "dental",
+        "engineering",
+        "law",
+        "managemnent",
+        "medical",
+        "pharmacy",
+        "research_institutes",
+    ];
 
+    const [formValues, setFormValues] = useState([{ name: "", rank: "" }]);
     const [detail, setDetail] = useState({
         institute: "",
-        subtype: "architecture",
-        type: "university",
-        NIRF: "",
         NAAC: "",
+        NAACCGPA: "",
+        NBA: "",
     });
+
+    let finalDetail;
+
+    // Nirf functions
+
+    let handleChange = (i, e) => {
+        let newFormValues = [...formValues];
+        newFormValues[i][e.target.name] = e.target.value;
+        setFormValues(newFormValues);
+    };
+
+    let addFormFields = () => {
+        setFormValues([...formValues, { name: "", rank: "" }]);
+    };
+
+    let removeFormFields = (i) => {
+        let newFormValues = [...formValues];
+        newFormValues.splice(i, 1);
+        setFormValues(newFormValues);
+    };
+
+    let handleSubmit = () => {
+        console.log(formValues);
+    };
+
+    // end
+
+    let name, value;
 
     const handleInputs = (e) => {
         // console.log(e);
@@ -57,13 +71,22 @@ const DetailFrm = () => {
     const postData = async (e) => {
         e.preventDefault();
 
+        handleSubmit();
+        finalDetail = {
+            institute: detail.institute,
+            NAAC: detail.NAAC,
+            NAACCGPA: detail.NAACCGPA,
+            NBA: detail.NBA,
+            NIRF: formValues,
+        };
+
         if (detail.type === "university") {
             detail.subtype = "none";
         }
 
-        const { institute, type, NIRF, NBA, NAAC } = detail;
+        const { institute, NAAC, NAACCGPA, NBA } = detail;
 
-        if (!institute || !type || !NIRF || !NAAC) {
+        if (!institute || !NAAC || !NAACCGPA || !NBA) {
             MySwal.fire({
                 icon: "error",
                 title: <p>Error!</p>,
@@ -72,20 +95,20 @@ const DetailFrm = () => {
         } else {
             console.log(detail);
 
-            setDetail({ institute: "", type: "", NIRF: "", NBA: "", NAAC: "" });
+            setDetail({ institute: "", NAAC: "", NAACCGPA: "", NBA: "" });
 
             MySwal.fire({
                 icon: "success",
                 title: <p>Thank you!</p>,
                 text: `your detial submited successfully`,
             });
-            // Send user to backend is remaining
-            // navigate("/detail");
-            router.push("/detail");
+
+            console.log(finalDetail);
+            alert(JSON.stringify(finalDetail));
+            setDetail({ institute: "", type: "", NAAC: "" });
+            setFormValues([{ name: "", rank: "" }]);
         }
     };
-
-    //
 
     return (
         <>
@@ -100,7 +123,7 @@ const DetailFrm = () => {
                 </Head>
                 <Card
                     style={{ width: "38rem" }}
-                    className="modal-content bordeer border-0 rounded-4 shadow p-4"
+                    className="modal-content bordeer border-0 rounded-4 shadow p-0"
                 >
                     {/* <Card.Img variant="top" src={BGimg} /> */}
                     <Card.Body>
@@ -110,23 +133,6 @@ const DetailFrm = () => {
                             </h1>
                         </Card.Title>
                         <Form method="POST">
-                            <Form.Group as={Col} controlId="instituteName">
-                                <Form.Label>Institute Type</Form.Label>
-                                <Form.Select
-                                    size="lg"
-                                    className="mb-3"
-                                    aria-label="Default select example"
-                                    name="type"
-                                    autoComplete="off"
-                                    value={detail.type}
-                                    onChange={handleInputs}
-                                >
-                                    <option value="university">
-                                        University
-                                    </option>
-                                    <option value="collage">Collage</option>
-                                </Form.Select>
-                            </Form.Group>
                             <Form.Group as={Col} controlId="instituteName">
                                 <Form.Label>Institute Name</Form.Label>
                                 <Form.Control
@@ -140,49 +146,124 @@ const DetailFrm = () => {
                                     onChange={handleInputs}
                                 />
                             </Form.Group>
-                            <Form.Group as={Col} controlId="instituteType">
-                                <Form.Label>Institute Sub Type</Form.Label>
-                                <Form.Select
-                                    size="lg"
-                                    className="mb-3"
-                                    aria-label="Default select example"
-                                    name="subtype"
-                                    autoComplete="off"
-                                    value={detail.subtype}
-                                    onChange={handleInputs}
-                                    disabled={detail.type !== "collage"}
-                                >
-                                    {institutes}
-                                </Form.Select>
-                            </Form.Group>
-
                             <Row className="mb-3">
-                                <Form.Group as={Col} controlId="formGridEmail">
-                                    <Form.Label>NIRF Rank</Form.Label>
+                                <Form.Group as={Col} controlId="naacGrade">
+                                    <Form.Label>NAAC Grade</Form.Label>
                                     <Form.Control
                                         size="lg"
-                                        type="number"
-                                        placeholder="NIRF Rank"
-                                        name="NIRF"
+                                        type="text"
+                                        placeholder="NAAC Grade"
+                                        name="NAAC"
                                         autoComplete="off"
-                                        value={detail.NIRF}
+                                        value={detail.NAAC}
+                                        onChange={handleInputs}
+                                    />
+                                </Form.Group>
+                                <Form.Group as={Col} controlId="naacCgpa">
+                                    <Form.Label>NAAC CGPA</Form.Label>
+                                    <Form.Control
+                                        size="lg"
+                                        className="mb-3"
+                                        type="text"
+                                        placeholder="NAAC CGPA"
+                                        name="NAACCGPA"
+                                        autoComplete="off"
+                                        value={detail.NAACCGPA}
+                                        onChange={handleInputs}
+                                    />
+                                </Form.Group>
+                                <Form.Group as={Col} controlId="nba">
+                                    <Form.Label>NBA</Form.Label>
+                                    <Form.Control
+                                        size="lg"
+                                        className="mb-3"
+                                        type="text"
+                                        placeholder="NBA Accreditation"
+                                        name="NBA"
+                                        autoComplete="off"
+                                        value={detail.NBA}
                                         onChange={handleInputs}
                                     />
                                 </Form.Group>
                             </Row>
-                            <Form.Group controlId="formGridPassword">
-                                <Form.Label>NAAC Rank</Form.Label>
-                                <Form.Control
-                                    size="lg"
+                            <Form.Label className="mb-1">NIRF</Form.Label>
+                            <form onSubmit={handleSubmit}>
+                                {formValues.map((element, index) => (
+                                    <div className="form-inline" key={index}>
+                                        <Row>
+                                            <Form.Group
+                                                as={Col}
+                                                controlId="nba"
+                                            >
+                                                <Form.Label>
+                                                    Institute
+                                                </Form.Label>
+                                                <Form.Control
+                                                    size="lg"
+                                                    className="mb-3"
+                                                    type="text"
+                                                    placeholder="NIRF Institute type"
+                                                    name="name"
+                                                    value={element.name || ""}
+                                                    onChange={(e) =>
+                                                        handleChange(index, e)
+                                                    }
+                                                />
+                                            </Form.Group>
+                                            <Form.Group
+                                                as={Col}
+                                                controlId="nba"
+                                            >
+                                                <Form.Label>Rank</Form.Label>
+                                                <Form.Control
+                                                    size="lg"
+                                                    className="mb-3"
+                                                    type="text"
+                                                    placeholder="NIRF rank"
+                                                    name="rank"
+                                                    value={element.rank || ""}
+                                                    onChange={(e) =>
+                                                        handleChange(index, e)
+                                                    }
+                                                />
+                                            </Form.Group>
+                                            <Form.Group
+                                                as={Col}
+                                                controlId="nba"
+                                            >
+                                                <div className="mb-2">
+                                                    &nbsp;
+                                                </div>
+                                                {index ? (
+                                                    <Button
+                                                        as={Col}
+                                                        size="lg"
+                                                        variant="outline-danger"
+                                                        onClick={() =>
+                                                            removeFormFields(
+                                                                index
+                                                            )
+                                                        }
+                                                    >
+                                                        Remove
+                                                    </Button>
+                                                ) : null}
+                                            </Form.Group>
+                                        </Row>
+                                    </div>
+                                ))}
+
+                                <Button
+                                    as={Col}
+                                    type="button"
+                                    variant="outline-success"
                                     className="mb-3"
-                                    type="text"
-                                    placeholder="NAAC Rank"
-                                    name="NAAC"
-                                    autoComplete="off"
-                                    value={detail.NAAC}
-                                    onChange={handleInputs}
-                                />
-                            </Form.Group>
+                                    size="lg"
+                                    onClick={() => addFormFields()}
+                                >
+                                    Add More
+                                </Button>
+                            </form>
                             <Button
                                 size="lg"
                                 className="w-100 mb-2 btn btn-lg rounded-3 btn-primary"

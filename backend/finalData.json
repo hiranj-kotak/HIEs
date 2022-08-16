@@ -1,15 +1,20 @@
 {
-    "id": "longrandomstring123",
-    "instituteName": "JayKeraliya",
-    "NAAC": "A++",
-    "NAACCgpa": "5.5",
-    "NBA": "Not decided what to do",
-    "NIRf": [
+    "institute": "Jay",
+    "NAAC": "A",
+    "NAACCGPA": "5.5",
+    "NBA": "true",
+    "NIRF": [
         {
-            "B.tech": "1",
-            "Pharmacy": "2",
-            "B.Sc": "3"
+            "name": "A",
+            "rank": "5"
+        },
+        {
+            "name": "B",
+            "rank": "6"
+        },
+        {
+            "name": "G",
+            "rank": "20"
         }
-    ],
-    "slug": "JayKeraliya"
+    ]
 }

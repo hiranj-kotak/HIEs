@@ -9,6 +9,7 @@ import "bootstrap/dist/js/bootstrap.min.js";
 import Signup from "./components/Signup";
 import Showrank from "./components/Showrank";
 import DetailFrm from "./components/DetailFrm";
+import DynemicForm from "./components/DynemicForm";
 
 function App() {
     return (
@@ -21,6 +22,7 @@ function App() {
                     <Route exact path="signin" element={<Signin />} />
                     <Route exact path="signup" element={<Signup />} />
                     <Route exact path="detailsfrm" element={<DetailFrm />} />
+                    <Route exact path="/frm" element={<DynemicForm />} />
                 </Routes>
             </Router>
         </>
