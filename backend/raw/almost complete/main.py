@@ -6,6 +6,8 @@ from user_data import users
 from user_login import sign_up, sign_in
 from college_signin import college_sign_up, college_sign_in
 from Search_And_Validate import validate_naac_grade,validate_nirf_rank
+from make_usefull_json import encode_json,decode_json
+from college_database import college_data_entry
 
 app = Flask(__name__)
 
@@ -29,7 +31,7 @@ def hello_world():
 def user_signup():
     data = request.get_json();
     value = sign_up(data)
-    print(value)
+    # print(value)
     if(value['value']=="True"):
         value=users(value)
     # # print(value)
@@ -60,20 +62,16 @@ def college_signin():
 @app.route('/college_detail/', methods=['POST','GET'])
 def get_detail_of_college():
     content = request.get_json()
-    print(f"63 {content}")
-    if  content['NAAC']:
-        # print("nacc runned succesfully")
-        content = validate_naac_grade(content)
-        # print(content)
-    print(f"68 {content}")
-    print(content['NIRF'])
-    if  content['NIRF']:
-        print(f"71 {content}")
-        # print(content['NIRF'])
-        print( "nacc runned succesfully")
-        # {'B.tech': '1', 'Pharmacy': '2', 'B.Sc': '3'}
-        content = validate_nirf_rank(content)
-    print(content)
+
+    for i in content:
+        if  i=='NAAC':
+            content = validate_naac_grade(content)
+        if  i=='NIRF':
+            content = encode_json(content)
+            content = validate_nirf_rank(content)
+    content1=content
+    college_data_entry(content1)
+    content = decode_json(content)
     return content
 @app.route('/user_search/', methods=['POST'])
 def put_detail_of_college():

@@ -9,11 +9,16 @@ db = client['HEIS']
 def college_data_entry(data):
     college = db['college_data']
     college.insert_one(data)
-    datas=college.find_one({"instituteName":data["instituteName"]},{"_id":1})
+    data["_id"]=None
+    # print(data)
+    # datas = college.find_one({"instituteName": data["instituteName"]}, {"_id": 0})
+    # print(datas)
+    # return datas
 
-    # ids=str(datas["_id"])
-    # print(ids)
-    return datas
+
+# ids=str(datas["_id"])
+# print(ids)
+# return datas
 
 
 

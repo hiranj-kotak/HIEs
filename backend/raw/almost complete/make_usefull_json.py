@@ -1,31 +1,77 @@
-def make_json(request_json):
+def encode_json(request_json):
     test_NIRF=request_json["NIRF"]
     NIRF={}
     for i in test_NIRF:
-        # k=i["name"]
         NIRF[i["name"]]=i["rank"]
-    # print(NIRF)
     request_json["NIRF"]=NIRF
     return request_json
 
-# make_json(d)
-# print(make_json(d))
-#
-# d={
-#     "ins":"hii",
-#     "naac":"a",
-#     "NIRF":[
+def decode_json(request_json):
+    NIRF=[]
+    test=request_json["NIRF"]
+    for i in test:
+        a={
+            "name":i,
+            "rank":test[i]
+        }
+        NIRF.append(a)
+    request_json["NIRF"]=NIRF
+    return request_json
+
+# d1=encode_json(d)
+# print(encode_json(d))
+
+# print(decode_json(d1))
+# decode_json(d1)
+
+
+
+# d1={
+#     'id': 'longrandomstring123',
+#     'instituteName': 'NIrma UNiversity',
+#     'NAAC': 'A+',
+#     'CGPA': '3.33',
+#     'NBA': 'Not decided what to do',
+#     'NIRF':
 #         {
-#             "name":"a1",
-#             "rank":"11"
-#         },
-# {
-#             "name":"b1",
-#             "rank":"22"
-#         },
-# {
-#             "name":"c1",
-#             "rank":"33"
-#         }
-#     ]
+#         'overall': '151 to 200',
+#          'engineering': '125',
+#          'management': '45',
+#          'university': '101 to 150',
+#          'pharmacy': '28',
+#          'architecture': '21'}
+#     }
+
+# d={
+#     "id": "longrandomstring123",
+#     "instituteName": "NIrma UNiversity",
+#     "NAAC": "A+",
+#     "CGPA": "3.33",
+#     "NBA": "Not decided what to do",
+#     "NIRF":[
+#          {
+#              "name":"overall",
+#              "rank":"151 to 200"
+#          },
+#          {
+#              "name":"engineering",
+#              "rank":"125"
+#          },
+#         {
+#              "name":"management",
+#              "rank":"45"
+#          },
+#          {
+#              "name":"university",
+#              "rank":"101 to 150"
+#          },
+#          {
+#              "name":"pharmacy",
+#              "rank":"28"
+#          },
+#          {
+#              "name":"architecture",
+#              "rank":"21"
+#          }
+#      ]
 # }

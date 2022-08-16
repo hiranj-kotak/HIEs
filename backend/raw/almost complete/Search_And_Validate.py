@@ -80,13 +80,13 @@ def validate_nirf_rank(input_data):
     for type in nirf:
         # print(type)
         # print(nirf[type])
-
         list = data[type]
-        print(nirf[type])
+        # print(nirf[type])
         # print(list)
-        try:
-            rank = int(nirf[type]) -1
-            if rank <=100:
+        if (type=="engineering"):
+            rank = int(nirf[type]) - 1
+            if rank < 200:
+                # print("100")
                 final_data = list[rank]
                 if final_data["instituteName"] == ans:
                     # print(final_data)
@@ -96,25 +96,152 @@ def validate_nirf_rank(input_data):
                 else:
                     nirf[type] = False
                     # return False
-            print(nirf[type])
-        except:
-            t = nirf[type]
-            for i in list:
-                if i["instituteName"] == ans:
-                    # print(i["instituteName"])
-                    # print(ans)
-                    # print(nirf[type])
-                    if i["NIRF"] == t:
-                        print("true")
-                        q =True
-                    else:
-                        q = False
+            # print(nirf[type])
+            elif rank < 250:
+                # print(150)
+                for i in range(200, 250):
+                    if list[i]["instituteName"] == ans:
+                        # print(i)
+                        i = i - 10
+                        break
+                # print(list[149])
+                if i < 245:
+                    # print(i)
+                    nirf[type] = "201 to 250"
+                    pass
                 else:
-                    q = False
-            nirf[type] = q
+
+                    nirf[type] = False
+            elif rank < 300:
+                # print(200)
+                for i in range(250, 299):
+                    if list[i]["instituteName"] == ans:
+                        # print(i)
+                        i = i - 10
+                        break
+                # print(list[149])
+                if i < 295:
+                    # print(i)
+                    nirf[type] = "251 to 300"
+                    pass
+                else:
+
+                    nirf[type] = False
+            else:
+                nirf[type] = "we can validate only below the 300 rank"
+        else:
+            rank = int(nirf[type]) -1
+            if rank <100:
+                # print("100")
+                final_data = list[rank]
+                if final_data["instituteName"] == ans:
+                    # print(final_data)
+                    # nirf[type]=final_data['NIRF']
+                    # return True
+                    pass
+                else:
+                    nirf[type] = False
+                    # return False
+            # print(nirf[type])
+            elif rank<150:
+                # print(150)
+                for i in range(100,150):
+                    if list[i]["instituteName"] == ans:
+                        # print(i)
+                        i=i-10
+                        break
+                # print(list[149])
+                if i<145:
+                    # print(i)
+                    nirf[type] = "101 to 150"
+                    pass
+                else:
+
+                    nirf[type] = False
+            elif rank<200:
+                # print(200)
+                for i in range(150,199):
+                    if list[i]["instituteName"] == ans:
+                        # print(i)
+                        i=i-10
+                        break
+                # print(list[149])
+                if i<195:
+                    # print(i)
+                    nirf[type] = "151 to 200"
+                    pass
+                else:
+
+                    nirf[type] = False
+            else:
+                nirf[type] = "we can validate only below the 200 rank"
+
     input_data['NIRF']=nirf
     return input_data
 
+
+input_Data={
+    'id': 'longrandomstring123',
+    'instituteName': 'NIrma UNiversity',
+    'NAAC': 'A+',
+    'CGPA': '3.33',
+    'NBA': 'Not decided what to do',
+    'NIRF':
+        {
+        'overall': '151 to 200',
+         'engineering': '125',
+         'management': '45',
+         'university': '101 to 150',
+         'pharmacy': '28',
+         'architecture': '21'}
+    }
 # input_Datarint63content}")
 # print(validate_nirf_rank(input_Data))
+# validate_nirf_rank(input_Data)
 # print(validate_naac_grade(input_Data))
+
+
+# def validate_nirf_rank(input_data):
+#
+#     nirf = input_data['NIRF']
+#     # print(nirf)
+#     data = open_nirf_json_fie()
+#     ans  = create_token_nirf(input_data["instituteName"])
+#     for type in nirf:
+#         # print(type)
+#         # print(nirf[type])
+#
+#         list = data[type]
+#         print(nirf[type])
+#         # print(list)
+#         try:
+#             rank = int(nirf[type]) -1
+#             if rank <=100:
+#                 final_data = list[rank]
+#                 if final_data["instituteName"] == ans:
+#                     # print(final_data)
+#                     # nirf[type]=final_data['NIRF']
+#                     # return True
+#                     pass
+#                 else:
+#                     nirf[type] = False
+#                     # return False
+#             print(nirf[type])
+#         except:
+#             t = nirf[type]
+#             for i in list:
+#                 if i["instituteName"] == ans:
+#                     # print(i["instituteName"])
+#                     # print(ans)
+#                     # print(nirf[type])
+#                     if i["NIRF"] == t:
+#                         print("true")
+#                         q =True
+#                     else:
+#                         q = False
+#                 else:
+#                     q = False
+#             nirf[type] = q
+#     input_data['NIRF']=nirf
+#     return input_data
+
