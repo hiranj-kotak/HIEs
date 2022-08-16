@@ -104,7 +104,14 @@ const DetailFrm = () => {
             });
 
             console.log(finalDetail);
-            alert(JSON.stringify(finalDetail));
+
+            alert(`
+            institute: ${finalDetail.institute}
+            NAAC: ${finalDetail.NAAC}
+            NAACCGPA: ${finalDetail.NAACCGPA}
+            NBA: ${finalDetail.NBA}
+            NIRF: ${JSON.stringify(finalDetail.NIRF)}
+            `);
             setDetail({ institute: "", NAAC: "", NAACCGPA: "", NBA: "" });
             setFormValues([{ name: "", rank: "" }]);
         }
