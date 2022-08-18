@@ -7,7 +7,7 @@ from user_login import sign_up, sign_in
 from college_signin import college_sign_up, college_sign_in
 from Search_And_Validate import validate_naac_grade,validate_nirf_rank
 from make_usefull_json import encode_json,decode_json
-from college_database import college_data_entry
+from college_database import college_data_entry,Search_data
 
 app = Flask(__name__)
 
@@ -76,8 +76,8 @@ def get_detail_of_college():
 @app.route('/user_search/', methods=['POST'])
 def put_detail_of_college():
     content = request.get_json()
-
-    return "hii"
+    content=Search_data(content)
+    return content
 
 
 if __name__ == "__main__":

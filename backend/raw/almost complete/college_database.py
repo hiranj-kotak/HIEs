@@ -1,21 +1,27 @@
 import pymongo
-from flask import jsonify
-# from nirf100 import nirf
-# from naac_exl import naac
 client = pymongo.MongoClient("mongodb+srv://HitKoladiya:hii@cluster0.lwkdtbn.mongodb.net/test")
 db = client['HEIS']
+college = db['college_data']
 
 
 def college_data_entry(data):
-    college = db['college_data']
+    data["instituteName"]=data["instituteName"].lower()
     college.insert_one(data)
     data["_id"]=None
     # print(data)
     # datas = college.find_one({"instituteName": data["instituteName"]}, {"_id": 0})
     # print(datas)
     # return datas
+def Search_data(data):
+    data["instituteName"] = data["instituteName"].lower()
+    datas = college.find_one({"instituteName": data["instituteName"]}, {"_id": 0})
+    # print(datas)
+    return datas
 
-
+# d={
+#     "instituteName":"nirma university"
+# }
+# Search_data(d)
 # ids=str(datas["_id"])
 # print(ids)
 # return datas
