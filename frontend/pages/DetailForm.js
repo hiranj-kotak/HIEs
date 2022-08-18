@@ -9,26 +9,32 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Card from "react-bootstrap/Card";
+import axios from "axios";
+
+const requestURL = process.env.POST_COLLAGE_DETAIL_URL;
 
 const DetailFrm = () => {
     const MySwal = withReactContent(Swal);
 
     const institutes = [
-        "architecture",
-        "dental",
-        "engineering",
-        "law",
-        "managemnent",
-        "medical",
-        "pharmacy",
+        "overall",
+        "university",
+        "college",
         "research_institutes",
+        "engineering",
+        "management",
+        "pharmacy",
+        "medical",
+        "dental",
+        "law",
+        "architecture",
     ];
 
     const [formValues, setFormValues] = useState([{ name: "", rank: "" }]);
     const [detail, setDetail] = useState({
-        institute: "",
+        instituteName: "",
         NAAC: "",
-        NAACCGPA: "",
+        CGPA: "",
         NBA: "",
     });
 
@@ -73,9 +79,9 @@ const DetailFrm = () => {
 
         handleSubmit();
         finalDetail = {
-            institute: detail.institute,
+            instituteName: detail.instituteName,
             NAAC: detail.NAAC,
-            NAACCGPA: detail.NAACCGPA,
+            CGPA: detail.CGPA,
             NBA: detail.NBA,
             NIRF: formValues,
         };
@@ -84,9 +90,9 @@ const DetailFrm = () => {
             detail.subtype = "none";
         }
 
-        const { institute, NAAC, NAACCGPA, NBA } = detail;
+        const { instituteName, NAAC, CGPA, NBA } = detail;
 
-        if (!institute || !NAAC || !NAACCGPA || !NBA) {
+        if (!instituteName || !NAAC || !CGPA || !NBA) {
             MySwal.fire({
                 icon: "error",
                 title: <p>Error!</p>,
@@ -95,25 +101,54 @@ const DetailFrm = () => {
         } else {
             // console.log(detail);
 
-            setDetail({ institute: "", NAAC: "", NAACCGPA: "", NBA: "" });
+            // setDetail({ instituteName: "", NAAC: "", CGPA: "", NBA: "" });
 
-            MySwal.fire({
-                icon: "success",
-                title: <p>Thank you!</p>,
-                text: `your detial submited successfully`,
-            });
+            const options = {
+                method: "POST",
+                url: requestURL,
+                data: finalDetail,
+            };
 
-            console.log(finalDetail);
+            axios
+                .request(options)
+                .then(function (response) {
+                    const responseData = `
+                    instituteName: ${response.data.instituteName}
+                    NAAC: ${response.data.NAAC}
+                    CGPA: ${response.data.CGPA}
+                    NBA: ${response.data.NBA}
+                    NIRF: ${JSON.stringify(response.data.NIRF)}
+                    `;
 
-            alert(`
-            institute: ${finalDetail.institute}
-            NAAC: ${finalDetail.NAAC}
-            NAACCGPA: ${finalDetail.NAACCGPA}
-            NBA: ${finalDetail.NBA}
-            NIRF: ${JSON.stringify(finalDetail.NIRF)}
-            `);
-            setDetail({ institute: "", NAAC: "", NAACCGPA: "", NBA: "" });
-            setFormValues([{ name: "", rank: "" }]);
+                    MySwal.fire({
+                        icon: "success",
+                        title: <p>Thank you!</p>,
+                        text: responseData,
+                    });
+
+                    console.log(response.data);
+                })
+                .catch(function (error) {
+                    MySwal.fire({
+                        icon: "error",
+                        title: <p>ERROR!</p>,
+                        text: error,
+                    });
+
+                    console.error(error);
+                });
+
+            // console.log(finalDetail);
+
+            // alert(`
+            // instituteName: ${finalDetail.instituteName}
+            // NAAC: ${finalDetail.NAAC}
+            // CGPA: ${finalDetail.CGPA}
+            // NBA: ${finalDetail.NBA}
+            // NIRF: ${JSON.stringify(finalDetail.NIRF)}
+            // `);
+            // setDetail({ instituteName: "", NAAC: "", CGPA: "", NBA: "" });
+            // setFormValues([{ name: "", rank: "" }]);
         }
     };
 
@@ -147,9 +182,9 @@ const DetailFrm = () => {
                                     className="mb-3"
                                     type="text"
                                     placeholder="Institute name"
-                                    name="institute"
+                                    name="instituteName"
                                     autoComplete="off"
-                                    value={detail.institute}
+                                    value={detail.instituteName}
                                     onChange={handleInputs}
                                 />
                             </Form.Group>
@@ -173,9 +208,9 @@ const DetailFrm = () => {
                                         className="mb-3"
                                         type="text"
                                         placeholder="NAAC CGPA"
-                                        name="NAACCGPA"
+                                        name="CGPA"
                                         autoComplete="off"
-                                        value={detail.NAACCGPA}
+                                        value={detail.CGPA}
                                         onChange={handleInputs}
                                     />
                                 </Form.Group>
