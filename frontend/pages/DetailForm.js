@@ -53,7 +53,7 @@ const DetailFrm = () => {
     };
 
     let handleSubmit = () => {
-        console.log(formValues);
+        // console.log(formValues);
     };
 
     // end
@@ -93,7 +93,7 @@ const DetailFrm = () => {
                 text: "All details are required",
             });
         } else {
-            console.log(detail);
+            // console.log(detail);
 
             setDetail({ institute: "", NAAC: "", NAACCGPA: "", NBA: "" });
 
@@ -104,8 +104,15 @@ const DetailFrm = () => {
             });
 
             console.log(finalDetail);
-            alert(JSON.stringify(finalDetail));
-            setDetail({ institute: "", type: "", NAAC: "" });
+
+            alert(`
+            institute: ${finalDetail.institute}
+            NAAC: ${finalDetail.NAAC}
+            NAACCGPA: ${finalDetail.NAACCGPA}
+            NBA: ${finalDetail.NBA}
+            NIRF: ${JSON.stringify(finalDetail.NIRF)}
+            `);
+            setDetail({ institute: "", NAAC: "", NAACCGPA: "", NBA: "" });
             setFormValues([{ name: "", rank: "" }]);
         }
     };
@@ -198,7 +205,7 @@ const DetailFrm = () => {
                                                 <Form.Label>
                                                     Institute
                                                 </Form.Label>
-                                                <Form.Control
+                                                {/* <Form.Control
                                                     size="lg"
                                                     className="mb-3"
                                                     type="text"
@@ -208,7 +215,39 @@ const DetailFrm = () => {
                                                     onChange={(e) =>
                                                         handleChange(index, e)
                                                     }
-                                                />
+                                                /> */}
+                                                <Form.Select
+                                                    size="lg"
+                                                    className="mb-3"
+                                                    aria-label="Default select example"
+                                                    name="name"
+                                                    value={
+                                                        element.name || "none"
+                                                    }
+                                                    onChange={(e) =>
+                                                        handleChange(index, e)
+                                                    }
+                                                >
+                                                    <option
+                                                        value="none"
+                                                        disabled
+                                                    >
+                                                        Select Institute
+                                                    </option>
+                                                    {institutes.map((e) => {
+                                                        return (
+                                                            <option
+                                                                key={e}
+                                                                value={e}
+                                                            >
+                                                                {e
+                                                                    .charAt(0)
+                                                                    .toUpperCase() +
+                                                                    e.slice(1)}
+                                                            </option>
+                                                        );
+                                                    })}
+                                                </Form.Select>
                                             </Form.Group>
                                             <Form.Group
                                                 as={Col}
