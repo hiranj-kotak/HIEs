@@ -1,8 +1,8 @@
-from flask import Flask, request
+from flask import Flask, request, render_template, abort
 # from nirf100 import  nirf
 from flask_cors import CORS
 # from database import nirf_api
-# from user_data import users
+from user_data import users
 from user_login import sign_up, sign_in
 from college_signin import college_sign_up, college_sign_in
 from Search_And_Validate import validate_naac_grade,validate_nirf_rank
@@ -26,6 +26,9 @@ CORS(app, resources={r"/user_search/": {"origins": "*"}})
 def hello_world():
     return 'Hello, World!'
 
+@app.errorhandler(404)
+def page_not_found(error):
+   return render_template('404.html', title = '404'), 404
 
 @app.route('/user_signup/', methods=['POST'])
 def user_signup():
@@ -77,6 +80,9 @@ def get_detail_of_college():
 def put_detail_of_college():
     content = request.get_json()
     content=Search_data(content)
+    if content==None:
+        abort(404)
+    content=decode_json(content)
     return content
 
 

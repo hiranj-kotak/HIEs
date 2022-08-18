@@ -14,14 +14,16 @@ def college_data_entry(data):
     # return datas
 def Search_data(data):
     data["instituteName"] = data["instituteName"].lower()
+
     datas = college.find_one({"instituteName": data["instituteName"]}, {"_id": 0})
     # print(datas)
     return datas
 
-# d={
-#     "instituteName":"nirma university"
-# }
-# Search_data(d)
+d={
+    "instituteName":"university"
+}
+# print(Search_data(d))
+
 # ids=str(datas["_id"])
 # print(ids)
 # return datas
