@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import Head from "next/head";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
+import axios from "axios";
 
 const Detail = () => {
     // let getData;
     const MySwal = withReactContent(Swal);
 
     const [user, setUser] = useState({
-        name: "",
+        instituteName: "",
     });
 
     const [getData, setGetData] = useState();
@@ -23,12 +24,14 @@ const Detail = () => {
         setUser({ ...user, [name]: value });
     };
 
+    let nirf = ``;
+
     const postData = async (e) => {
         e.preventDefault();
 
-        const { name } = user;
+        const { instituteName } = user;
 
-        if (!name) {
+        if (!instituteName) {
             MySwal.fire({
                 icon: "error",
                 title: <p>Error!</p>,
@@ -36,28 +39,41 @@ const Detail = () => {
             });
         } else {
             // fetch data from beckend
-            setGetData({
-                id: "longrandomstring123",
-                instituteName: "JayKeraliya",
-                NAAC: "A++",
-                NAACCgpa: "5.5",
-                NBA: "Not decided what to do",
-                NIRf: {
-                    Btech: "1",
-                    Pharmacy: "2",
-                    BSc: "3",
-                },
-            });
+            const options = {
+                method: "POST",
+                url: "http://127.0.0.1:5000/user_search/",
+                data: user,
+            };
+            let data;
+            axios
+                .request(options)
+                .then(function (response) {
+                    data = response.data;
+                    setGetData(response.data);
+                    console.log(response.data);
+                })
+                .catch(function (error) {
+                    console.error(error);
+                });
+
+            // setGetData({
+            //     id: "longrandomstring123",
+            //     instituteName: "JayKeraliya",
+            //     NAAC: "A++",
+            //     NAACCgpa: "5.5",
+            //     NBA: "Not decided what to do",
+            //     NIRf: {
+            //         Btech: "1",
+            //         Pharmacy: "2",
+            //         BSc: "3",
+            //     },
+            // });
+
+            setGetData(data);
+
+            console.log(getData);
         }
     };
-
-    let nirf = ``;
-    if (getData) {
-        Object.keys(getData.NIRf).forEach(function (key) {
-            nirf += `${key} : ${getData.NIRf[key]}, `;
-        });
-        console.log(nirf);
-    }
 
     return (
         <div className="modal modal-signin position-static d-block bg-none py-5">
@@ -81,9 +97,9 @@ const Detail = () => {
                                     type="name"
                                     className="form-control rounded-3"
                                     placeholder="name"
-                                    name="name"
+                                    name="instituteName"
                                     autoComplete="off"
-                                    value={user.name}
+                                    value={user.instituteName}
                                     onChange={handleInputs}
                                 />
                                 <label htmlFor="floatingInput">
@@ -131,7 +147,7 @@ const Detail = () => {
                                             <td className="pr-2"> NAAC CGPA</td>
                                             <td className="px-2"> : </td>
                                             <td className="px-2">
-                                                {getData.NAACCgpa}
+                                                {getData.CGPA}
                                             </td>
                                         </tr>
                                         <tr>
@@ -145,7 +161,10 @@ const Detail = () => {
                                 </table>
                                 <div className="mt-5">
                                     <h6 className="fw-bold mb-0">NIRF Rank</h6>
-                                    {nirf}
+                                    {getData.NIRF.map((e) => {
+                                        e.name
+                                        e.rank
+                                    })}
                                 </div>
                             </>
                         ) : (
