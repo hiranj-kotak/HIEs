@@ -88,9 +88,12 @@ def put_detail_of_college():
 
 if __name__ == "__main__":
     app.run(debug=True)
+<<<<<<< HEAD
     
 # if __name__ == "__main__":
 #     app.run(debug=True,host="0.0.0.0", port=80)
+=======
+>>>>>>> parent of d7f71b0 (update)
 
 # @app.route('/naac/', methods=['GET'])
 # def nirf1():
