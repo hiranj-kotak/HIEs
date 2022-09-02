@@ -11,7 +11,7 @@ import Row from "react-bootstrap/Row";
 import Card from "react-bootstrap/Card";
 import axios from "axios";
 
-const requestURL = process.env.POST_COLLAGE_DETAIL_URL;
+const requestURL = "http://127.0.0.1:5000/college_detail"
 
 const DetailFrm = () => {
     const MySwal = withReactContent(Swal);
