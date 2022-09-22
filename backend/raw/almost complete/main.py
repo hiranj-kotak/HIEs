@@ -1,7 +1,5 @@
 from flask import Flask, request, render_template, abort
-# from nirf100 import  nirf
 from flask_cors import CORS
-# from database import nirf_api
 from user_data import users
 from user_login import sign_up, sign_in
 from college_signin import college_sign_up, college_sign_in
@@ -11,13 +9,7 @@ from college_database import college_data_entry,Search_data
 
 app = Flask(__name__)
 
-CORS(app, resources={r"/user_signup/": {"origins": "*"}})
-CORS(app, resources={r"/user_signin/": {"origins": "*"}})
-CORS(app, resources={r"/college_signup/": {"origins": "*"}})
-CORS(app, resources={r"/college_signin/": {"origins": "*"}})
-CORS(app, resources={r"/college_detail/": {"origins": "*"}})
-CORS(app, resources={r"/user_search/": {"origins": "*"}})
-
+CORS(app)
 
 # CORS(app, resources={r"/user/": {"origins": "*"}})
 
@@ -43,21 +35,21 @@ def user_signup():
 
 @app.route('/user_signin/', methods=['POST'])
 def user_signin():
-    data = request.get_json();
+    data = request.get_json()
     value = sign_in(data)
     return value
 
 
 @app.route('/college_signup/', methods=['POST'])
 def college_signup():
-    data = request.get_json();
+    data = request.get_json()
     value = college_sign_up(data)
     return value
 
 
 @app.route('/college_signin/', methods=['POST'])
 def college_signin():
-    data = request.get_json();
+    data = request.get_json()
     value = college_sign_in(data)
     return value
 
@@ -88,12 +80,12 @@ def put_detail_of_college():
 
 if __name__ == "__main__":
     app.run(debug=True)
-<<<<<<< HEAD
+# <<<<<<< HEAD
     
 # if __name__ == "__main__":
 #     app.run(debug=True,host="0.0.0.0", port=80)
-=======
->>>>>>> parent of d7f71b0 (update)
+# =======
+# >>>>>>> parent of d7f71b0 (update)
 
 # @app.route('/naac/', methods=['GET'])
 # def nirf1():
