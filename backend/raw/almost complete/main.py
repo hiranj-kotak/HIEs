@@ -1,7 +1,5 @@
 from flask import Flask, request, render_template, abort
-# from nirf100 import  nirf
 from flask_cors import CORS
-# from database import nirf_api
 from user_data import users
 from user_login import sign_up, sign_in
 from college_signin import college_sign_up, college_sign_in
@@ -11,13 +9,7 @@ from college_database import college_data_entry,Search_data
 
 app = Flask(__name__)
 
-CORS(app, resources={r"/user_signup/": {"origins": "*"}})
-CORS(app, resources={r"/user_signin/": {"origins": "*"}})
-CORS(app, resources={r"/college_signup/": {"origins": "*"}})
-CORS(app, resources={r"/college_signin/": {"origins": "*"}})
-CORS(app, resources={r"/college_detail/": {"origins": "*"}})
-CORS(app, resources={r"/user_search/": {"origins": "*"}})
-
+CORS(app)
 
 # CORS(app, resources={r"/user/": {"origins": "*"}})
 
