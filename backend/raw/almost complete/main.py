@@ -35,21 +35,21 @@ def user_signup():
 
 @app.route('/user_signin', methods=['POST'])
 def user_signin():
-    data = request.get_json()
+    data = request.get_json();
     value = sign_in(data)
     return value
 
 
 @app.route('/college_signup', methods=['POST'])
 def college_signup():
-    data = request.get_json()
+    data = request.get_json();
     value = college_sign_up(data)
     return value
 
 
 @app.route('/college_signin', methods=['POST'])
 def college_signin():
-    data = request.get_json()
+    data = request.get_json();
     value = college_sign_in(data)
     return value
 
@@ -81,13 +81,9 @@ def put_detail_of_college():
 
 if __name__ == "__main__":
     app.run(debug=True)
-# <<<<<<< HEAD
     
 # if __name__ == "__main__":
-#     app.run(debug=True,host="0.0.0.0", port=80)
-# =======
-# >>>>>>> parent of d7f71b0 (update)
-
+#     app.run(debug=True,host="0.0.0.0", port=80
 # @app.route('/naac/', methods=['GET'])
 # def nirf1():
 #     data100 = naac_sort()
