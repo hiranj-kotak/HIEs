@@ -22,7 +22,7 @@ def hello_world():
 def page_not_found(error):
    return render_template('404.html', title = '404'), 404
 
-@app.route('/user_signup', methods=['POST'])
+@app.route('/user_signup/', methods=['POST'])
 def user_signup():
     data = request.get_json();
     value = sign_up(data)
@@ -33,28 +33,28 @@ def user_signup():
     return value
 
 
-@app.route('/user_signin', methods=['POST'])
+@app.route('/user_signin/', methods=['POST'])
 def user_signin():
-    data = request.get_json();
+    data = request.get_json()
     value = sign_in(data)
     return value
 
 
-@app.route('/college_signup', methods=['POST'])
+@app.route('/college_signup/', methods=['POST'])
 def college_signup():
-    data = request.get_json();
+    data = request.get_json()
     value = college_sign_up(data)
     return value
 
 
-@app.route('/college_signin', methods=['POST'])
+@app.route('/college_signin/', methods=['POST'])
 def college_signin():
-    data = request.get_json();
+    data = request.get_json()
     value = college_sign_in(data)
     return value
 
 
-@app.route('/college_detail', methods=['POST','GET'])
+@app.route('/college_detail/', methods=['POST','GET'])
 def get_detail_of_college():
     content = request.get_json()
 
@@ -69,7 +69,7 @@ def get_detail_of_college():
     content = decode_json(content)
     return content
 
-@app.route('/user_search', methods=['POST'])
+@app.route('/user_search/', methods=['POST'])
 def put_detail_of_college():
     content = request.get_json()
     content=Search_data(content)
@@ -81,9 +81,13 @@ def put_detail_of_college():
 
 if __name__ == "__main__":
     app.run(debug=True)
-    
+# <<<<<<< HEAD
+
 # if __name__ == "__main__":
-#     app.run(debug=True,host="0.0.0.0", port=80
+#     app.run(debug=True,host="0.0.0.0", port=80)
+# =======
+# >>>>>>> parent of d7f71b0 (update)
+
 # @app.route('/naac/', methods=['GET'])
 # def nirf1():
 #     data100 = naac_sort()
