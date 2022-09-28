@@ -5,6 +5,7 @@ import withReactContent from "sweetalert2-react-content";
 import axios from "axios";
 
 const Detail = () => {
+    const requestURL = "http://34.228.196.30/user_search/";
     // let getData;
     const MySwal = withReactContent(Swal);
 
@@ -41,7 +42,7 @@ const Detail = () => {
             // fetch data from beckend
             const options = {
                 method: "POST",
-                url: "http://127.0.0.1:5000/user_search/",
+                url: requestURL,
                 data: user,
             };
             let data;
@@ -162,8 +163,8 @@ const Detail = () => {
                                 <div className="mt-5">
                                     <h6 className="fw-bold mb-0">NIRF Rank</h6>
                                     {getData.NIRF.map((e) => {
-                                        e.name
-                                        e.rank
+                                        e.name;
+                                        e.rank;
                                     })}
                                 </div>
                             </>

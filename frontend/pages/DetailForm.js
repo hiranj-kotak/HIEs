@@ -11,7 +11,8 @@ import Row from "react-bootstrap/Row";
 import Card from "react-bootstrap/Card";
 import axios from "axios";
 
-const requestURL = "http://127.0.0.1:5000/college_detail/";
+const requestURL = "http://34.228.196.30/college_detail/";
+// console.log("requestURL: ", requestURL);
 
 const DetailFrm = () => {
     const MySwal = withReactContent(Swal);
