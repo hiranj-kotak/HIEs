@@ -43,7 +43,6 @@ const DetailFrm = () => {
         instituteName: "",
         NAAC: "",
         CGPA: "",
-        NBA: "",
     });
 
     let finalDetail;
@@ -100,14 +99,14 @@ const DetailFrm = () => {
 
         const { instituteName, NAAC, CGPA, NBA } = detail;
 
-        if (!instituteName || !NAAC || !CGPA || !NBA) {
+        if (!instituteName || !NAAC || !CGPA) {
             MySwal.fire({
                 icon: "error",
                 title: <p>Error!</p>,
                 text: "All details are required",
             });
         } else {
-            // console.log(detail);
+            console.log(finalDetail);
 
             // setDetail({ instituteName: "", NAAC: "", CGPA: "", NBA: "" });
 
@@ -229,19 +228,6 @@ const DetailFrm = () => {
                                             name="CGPA"
                                             autoComplete="off"
                                             value={detail.CGPA}
-                                            onChange={handleInputs}
-                                        />
-                                    </Form.Group>
-                                    <Form.Group as={Col} controlId="nba">
-                                        <Form.Label>NBA</Form.Label>
-                                        <Form.Control
-                                            size="lg"
-                                            className="mb-3"
-                                            type="text"
-                                            placeholder="NBA Accreditation"
-                                            name="NBA"
-                                            autoComplete="off"
-                                            value={detail.NBA}
                                             onChange={handleInputs}
                                         />
                                     </Form.Group>

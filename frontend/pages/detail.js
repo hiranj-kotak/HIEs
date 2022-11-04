@@ -162,21 +162,17 @@ const Detail = () => {
                                                 {getData.CGPA}
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td className="pr-2"> NBA Rank</td>
-                                            <td className="px-2"> : </td>
-                                            <td className="px-2">
-                                                {getData.NBA}
-                                            </td>
-                                        </tr>
                                     </tbody>
                                 </table>
                                 <div className="mt-5">
                                     <h6 className="fw-bold mb-0">NIRF Rank</h6>
-                                    {getData.NIRF.map((e) => {
-                                        e.name;
-                                        e.rank;
-                                    })}
+                                    {getData.NIRF.map((e) => (
+                                        <div>
+                                            <span className="fw-bold">{e.name}</span>
+                                            <span className="px-2"> : </span>
+                                            <span>{e.rank}</span>
+                                        </div>
+                                    ))}
                                 </div>
                             </>
                         ) : (

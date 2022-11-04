@@ -3,63 +3,23 @@ import Carousel from 'react-bootstrap/Carousel';
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
+import axios from "axios";
+import { useState } from "react";
 
 export default function Home() {
 
+    const [data, setData] = useState([]);
 
-    const data = [{
-        "CGPA": "3.33",
-        "NAAC": "A+",
-        "NIRF": [
-            {
-                "name": "overall",
-                "rank": "151 to 200"
-            }
-        ],
-        "instituteName": "nirma university"
-    }, {
-        "CGPA": "3.33",
-        "NAAC": "A+",
-        "NIRF": [
-            {
-                "name": "overall",
-                "rank": "151 to 200"
-            }
-        ],
-        "instituteName": "nirma university"
-    }, {
-        "CGPA": "3.33",
-        "NAAC": "A+",
-        "NIRF": [
-            {
-                "name": "overall",
-                "rank": "151 to 200"
-            }
-        ],
-        "instituteName": "nirma university"
-    }, {
-        "CGPA": "3.33",
-        "NAAC": "A+",
-        "NIRF": [
-            {
-                "name": "overall",
-                "rank": "151 to 200"
-            }
-        ],
-        "instituteName": "nirma university"
-    }, {
-        "CGPA": "3.33",
-        "NAAC": "A+",
-        "NIRF": [
-            {
-                "name": "overall",
-                "rank": "151 to 200"
-            }
-        ],
-        "instituteName": "nirma university"
-    }];
+    // const data2 = [{ "_id": { "$oid": "63653c205f85be249ae58fbe" }, "instituteName": "birla institute of technology & science", "NAAC": "A", "CGPA": "3.45", "NIRF": [{ "name": "university", "rank": "18" }, { "name": "engineering", "rank": "29" }, { "name": "overall", "rank": "32" }, { "name": "pharmacy", "rank": "5" }, { "name": "research", "rank": "33" }] }]
 
-    console.log(data[0].NIRF);
+    const options = { method: 'GET', url: 'http://127.0.0.1:5000/topcolleges/', headers: { jwt: '' } };
+
+    axios.request(options).then(function (response) {
+        setData(response.data)
+        console.log(response.data);
+    }).catch(function (error) {
+        console.error(error);
+    });
 
     return (
         <div>
@@ -78,7 +38,7 @@ export default function Home() {
                 <Row xs={1} md={2} lg={3} className="g-4 my-3 container mx-auto">
                     {data.map((item) => (
                         <Col>
-                            <Card style={{ width: "24rem" }} className="mx-auto">
+                            <Card style={{ width: "24rem", height:"18rem" }} className="mx-auto">
                                 <Card.Body>
                                     <Card.Title>
                                         {item.instituteName.charAt(0).toUpperCase() + item.instituteName.slice(1)}
