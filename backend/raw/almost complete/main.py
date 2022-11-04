@@ -82,6 +82,7 @@ def put_detail_of_college():
 @app.route('/topcolleges/', methods=['get'])
 def topcolleges():
     content= Topcolleges()
+    content=decode_json(content)
     print(content)
     return content
 
