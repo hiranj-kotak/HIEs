@@ -5,7 +5,7 @@ import withReactContent from "sweetalert2-react-content";
 import axios from "axios";
 
 const Detail = () => {
-    const requestURL = "http://34.228.196.30/user_search/";
+    const requestURL = "http://127.0.0.1:5000/user_search/";
     // let getData;
     const MySwal = withReactContent(Swal);
 
@@ -21,6 +21,7 @@ const Detail = () => {
         // console.log(e);
         name = e.target.name;
         value = e.target.value;
+
 
         setUser({ ...user, [name]: value });
     };
@@ -46,7 +47,15 @@ const Detail = () => {
                 data: user,
             };
             let data;
-            axios
+            MySwal.fire({
+                title: "Please Wait",
+                text: "Loading...",
+                timerProgressBar: true,
+                didOpen: () => {
+                    Swal.showLoading();
+                },
+            });
+            await axios
                 .request(options)
                 .then(function (response) {
                     data = response.data;
@@ -57,18 +66,20 @@ const Detail = () => {
                     console.error(error);
                 });
 
-            // setGetData({
-            //     id: "longrandomstring123",
-            //     instituteName: "JayKeraliya",
-            //     NAAC: "A++",
-            //     NAACCgpa: "5.5",
-            //     NBA: "Not decided what to do",
-            //     NIRf: {
-            //         Btech: "1",
-            //         Pharmacy: "2",
-            //         BSc: "3",
-            //     },
-            // });
+            if (data) {
+                MySwal.fire({
+                    icon: "success",
+                    title: <p>Success!</p>,
+                    text: "Data Fetched Successfully",
+                });
+            } else {
+                MySwal.fire({
+                    icon: "error",
+                    title: <p>Error!</p>,
+                    text: "Data Not Found",
+                });
+            }
+
 
             setGetData(data);
 
