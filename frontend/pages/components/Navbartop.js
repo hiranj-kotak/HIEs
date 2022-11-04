@@ -11,7 +11,7 @@ import Image from "react-bootstrap/Image";
 const Navbartop = () => {
     const { user, error, isLoading } = useUser();
 
-    console.log("user: ", user);
+    // console.log("user: ", user);
 
     if (isLoading) return <div>Loading...</div>;
     if (error) return <div>{error.message}</div>;

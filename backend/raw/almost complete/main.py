@@ -76,7 +76,7 @@ def put_detail_of_college():
     print(content)
     content=Search_data(content)
     if content==None:
-        abort(404)
+        return "No data found"
     content=decode_json(content)
     return content
 
