@@ -1,6 +1,66 @@
 import Head from "next/head";
+import Carousel from 'react-bootstrap/Carousel';
+import Card from 'react-bootstrap/Card';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 
 export default function Home() {
+
+
+    const data = [{
+        "CGPA": "3.33",
+        "NAAC": "A+",
+        "NIRF": [
+            {
+                "name": "overall",
+                "rank": "151 to 200"
+            }
+        ],
+        "instituteName": "nirma university"
+    }, {
+        "CGPA": "3.33",
+        "NAAC": "A+",
+        "NIRF": [
+            {
+                "name": "overall",
+                "rank": "151 to 200"
+            }
+        ],
+        "instituteName": "nirma university"
+    }, {
+        "CGPA": "3.33",
+        "NAAC": "A+",
+        "NIRF": [
+            {
+                "name": "overall",
+                "rank": "151 to 200"
+            }
+        ],
+        "instituteName": "nirma university"
+    }, {
+        "CGPA": "3.33",
+        "NAAC": "A+",
+        "NIRF": [
+            {
+                "name": "overall",
+                "rank": "151 to 200"
+            }
+        ],
+        "instituteName": "nirma university"
+    }, {
+        "CGPA": "3.33",
+        "NAAC": "A+",
+        "NIRF": [
+            {
+                "name": "overall",
+                "rank": "151 to 200"
+            }
+        ],
+        "instituteName": "nirma university"
+    }];
+
+    console.log(data[0].NIRF);
+
     return (
         <div>
             <Head>
@@ -11,10 +71,58 @@ export default function Home() {
                 />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <div className="position-relative overflow-hidden p-0 p-md-5 text-center semi-bg text-success">
-                <div className="col-md-5 p-lg-5 mx-auto my-5"></div>
-                <div className="product-device shadow-sm d-none d-md-block"></div>
-                <div className="product-device product-device-2 shadow-sm d-none d-md-block"></div>
+            <div className="container mt-3">
+                <h1 className="text-center">
+                    Top 10 institutes
+                </h1>
+                <Row xs={1} md={2} lg={3} className="g-4 my-3 container mx-auto">
+                    {data.map((item) => (
+                        <Col>
+                            <Card style={{ width: "24rem" }} className="mx-auto">
+                                <Card.Body>
+                                    <Card.Title>
+                                        {item.instituteName.charAt(0).toUpperCase() + item.instituteName.slice(1)}
+                                    </Card.Title>
+                                    <Card.Text>
+                                        <>
+                                            <table className="p-5">
+                                                <tbody>
+                                                    <tr>
+                                                        <td className="pr-2">
+                                                            {" "}
+                                                            NAAC Grade
+                                                        </td>
+                                                        <td className="px-2"> : </td>
+                                                        <td className="px-2">
+                                                            {item.NAAC}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td className="pr-2"> NAAC CGPA</td>
+                                                        <td className="px-2"> : </td>
+                                                        <td className="px-2">
+                                                            {item.CGPA}
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <div className="mt-2">
+                                                <h6 className="fw-bold mb-0">NIRF Rank</h6>
+                                                {item.NIRF.map((e) => (
+                                                    <div>
+                                                        <span className="fw-bold">{e.name}</span>
+                                                        <span className="px-2"> : </span>
+                                                        <span>{e.rank}</span>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </>
+                                    </Card.Text>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                    ))}
+                </Row>
             </div>
         </div>
     );
