@@ -4,7 +4,7 @@ def encode_json(request_json):
     for i in test_NIRF:
         NIRF[i["name"]]=i["rank"]
     request_json["NIRF"]=NIRF
-    print("encode data is:"+request_json)
+    # print("encode data is:"+request_json)
     return request_json
 
 def decode_json(request_json):
@@ -17,7 +17,7 @@ def decode_json(request_json):
         }
         NIRF.append(a)
     request_json["NIRF"]=NIRF
-    print("decode data is:" + request_json)
+    # print("decode data is:" + request_json)
     return request_json
 
 

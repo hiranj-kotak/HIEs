@@ -15,8 +15,7 @@ def Topcolleges():
         if i == 10:
             break
     # print(ans)
-
-    # return ans
+    return ans
 
 # Topcolleges()
 
