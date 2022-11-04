@@ -6,6 +6,7 @@ from college_signin import college_sign_up, college_sign_in
 from Search_And_Validate import validate_naac_grade,validate_nirf_rank
 from make_usefull_json import encode_json,decode_json
 from college_database import college_data_entry,Search_data
+from topcolleges import Topcolleges
 
 app = Flask(__name__)
 
@@ -78,6 +79,12 @@ def put_detail_of_college():
     content=decode_json(content)
     return content
 
+@app.route('/topcolleges/', methods=['get'])
+def topcolleges():
+    content= Topcolleges()
+    print(content)
+    return content
+
 
 if __name__ == "__main__":
     app.run(debug=True)
@@ -117,18 +124,18 @@ if __name__ == "__main__":
     # }
     # return data1
 #
-d1 = { "id": "longrandomstring123",
-    "instituteName": "NIrma UNiversity",
-    "NAAC": "A+",
-    "CGPA": "3.33",
-    "NBA": "Not decided what to do",
-    "NIRF":
-        {
-            "overall":"151 to 200",
-            "engineering":"125",
-            "management":"45",
-            "university":"101 to 150",
-            "pharmacy":"28",
-            "architecture":"21"
-        }
-}
+# d1 = { "id": "longrandomstring123",
+#     "instituteName": "NIrma UNiversity",
+#     "NAAC": "A+",
+#     "CGPA": "3.33",
+#     "NBA": "Not decided what to do",
+#     "NIRF":
+#         {
+#             "overall":"151 to 200",
+#             "engineering":"125",
+#             "management":"45",
+#             "university":"101 to 150",
+#             "pharmacy":"28",
+#             "architecture":"21"
+#         }
+# }

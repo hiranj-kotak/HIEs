@@ -19,20 +19,31 @@ def Search_data(data):
     # print(datas)
     return datas
 
-d={
-    "instituteName":"university"
-}
-# print(Search_data(d))
-
-# ids=str(datas["_id"])
-# print(ids)
-# return datas
 
 
-
-# d={
-# "instituteName": "NIRMA UNIVERSITY",
+# hit={
+#   "instituteName": "Sarvajanik Education Society",
+#   "NAAC": "A",
+#   "CGPA": "3.2",
+#   "NIRF": {
+# "overall":"15",
+#       "university":"8"
+#   }
 # }
-# print(college_data_entry(d))
-
-# ata =collection_nqm.find_one({'name':data['name']},{'_id':0})
+#
+#
+#
+# hiranj = {
+#   "instituteName": "Birla Institute of Technology & Science - Pilani",
+#   "NAAC": "A",
+#   "CGPA": "3.45",
+#   "NIRF" :{
+#     "university": "18",
+#     "engineering":"29",
+#     "overall" : "32",
+#     "pharmacy":"5",
+#     "research" : "33",
+#   }
+# }
+#
+# college_data_entry(hiranj)
