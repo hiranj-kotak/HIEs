@@ -4,6 +4,7 @@ def encode_json(request_json):
     for i in test_NIRF:
         NIRF[i["name"]]=i["rank"]
     request_json["NIRF"]=NIRF
+    print("encode data is:"+request_json)
     return request_json
 
 def decode_json(request_json):
@@ -16,9 +17,35 @@ def decode_json(request_json):
         }
         NIRF.append(a)
     request_json["NIRF"]=NIRF
+    print("decode data is:" + request_json)
     return request_json
 
-# d1=encode_json(d)
+
+
+# d1=encode_json({
+#     "CGPA": "3.33",
+#     "NAAC": "A+",
+#     "NBA": "",
+#     "NIRF": [
+#         {
+#             "name": "overall",
+#             "rank": "151 to 200"
+#         },
+#         {
+#             "name": "engineering",
+#             "rank": "125"
+#         },
+#         {
+#             "name": "management",
+#             "rank": "45"
+#         },
+#         {
+#             "name": "university",
+#             "rank": "101 to 150"
+#         }
+#     ],
+#     "instituteName": "nirma university"
+# })
 # print(encode_json(d))
 
 # print(decode_json(d1))

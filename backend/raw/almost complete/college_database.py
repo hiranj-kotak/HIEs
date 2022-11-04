@@ -1,7 +1,7 @@
 import pymongo
 client = pymongo.MongoClient("mongodb+srv://HitKoladiya:hii@cluster0.lwkdtbn.mongodb.net/test")
 db = client['HEIS']
-college = db['college_data']
+college = db['real_college_data']
 
 
 def college_data_entry(data):
@@ -14,22 +14,29 @@ def college_data_entry(data):
     # return datas
 def Search_data(data):
     data["instituteName"] = data["instituteName"].lower()
-
+    print(data["instituteName"])
     datas = college.find_one({"instituteName": data["instituteName"]}, {"_id": 0})
-    # print(datas)
+    print(datas)
     return datas
 
 
 
-# hit={
-#   "instituteName": "Sarvajanik Education Society",
-#   "NAAC": "A",
-#   "CGPA": "3.2",
-#   "NIRF": {
-# "overall":"15",
-#       "university":"8"
-#   }
-# }
+hit={
+  "_id": {
+    "$oid": "636522c574ddc8836c7b7ed1"
+  },
+  "instituteName": "nirma university",
+  "NAAC": "A+",
+  "CGPA": "3.33",
+  "NIRF": {
+    "overall": "151 to 200",
+    "engineering": "125",
+    "management": "45",
+    "university": "101 to 150",
+    "pharmacy": "28",
+    "architecture": "21"
+  }
+}
 #
 #
 #
@@ -46,4 +53,4 @@ def Search_data(data):
 #   }
 # }
 #
-# college_data_entry(hiranj)
+# college_data_entry(hit)

@@ -73,6 +73,7 @@ def get_detail_of_college():
 @app.route('/user_search/', methods=['POST'])
 def put_detail_of_college():
     content = request.get_json()
+    print(content)
     content=Search_data(content)
     if content==None:
         abort(404)
@@ -82,6 +83,7 @@ def put_detail_of_college():
 @app.route('/topcolleges/', methods=['get'])
 def topcolleges():
     content= Topcolleges()
+    print(content)
     content=decode_json(content)
     print(content)
     return content

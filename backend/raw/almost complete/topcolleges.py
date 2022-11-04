@@ -11,9 +11,25 @@ def Topcolleges():
     for x in datas:
         ans.append(x)
         i+=1
+        # print(x["NIRF"])
         if i == 10:
             break
     # print(ans)
-    return ans
+
+    # return ans
 
 # Topcolleges()
+
+
+# {
+#   "instituteName": "nirma university",
+#   "NAAC": "A+",
+#   "CGPA": "3.33",
+#   "NBA": "",
+#   "NIRF": {
+#     "overall": "151 to 200",
+#     "engineering": "125",
+#     "management": "45",
+#     "university": "101 to 150"
+#   }
+# }
