@@ -20,7 +20,7 @@ const Navbartop = () => {
         <Navbar bg="dark" variant="dark" expand="lg">
             <Container fluid>
                 <Link href={"/"}>
-                    <Navbar.Brand href="#">HIEs</Navbar.Brand>
+                    <Navbar.Brand href="#">HEIs</Navbar.Brand>
                 </Link>
                 <Navbar.Toggle aria-controls="navbarScroll" />
                 <Navbar.Collapse id="navbarScroll">
