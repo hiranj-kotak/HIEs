@@ -164,7 +164,8 @@ const Detail = () => {
                                         </tr>
                                     </tbody>
                                 </table>
-                                <div className="mt-5">
+                                {!getData.NIRF ? <div></div> : <div className="mt-5">
+
                                     <h6 className="fw-bold mb-0">NIRF Rank</h6>
                                     {getData.NIRF.map((e) => (
                                         <div>
@@ -173,7 +174,7 @@ const Detail = () => {
                                             <span>{e.rank}</span>
                                         </div>
                                     ))}
-                                </div>
+                                </div>}
                             </>
                         ) : (
                             ""
