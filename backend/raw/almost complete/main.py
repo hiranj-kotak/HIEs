@@ -8,6 +8,12 @@ from make_usefull_json import encode_json,decode_json
 from college_database import college_data_entry,Search_data
 from topcolleges import Topcolleges
 
+# new implement 2
+from newSignUp import newSignUp
+from email_otp_auth import emailOtpAuth
+from newSignIn import newSignIn
+from likedColleges import likedColleges,unlikedColleges
+
 app = Flask(__name__)
 
 CORS(app, supports_credentials=True)
@@ -87,6 +93,72 @@ def topcolleges():
     # content=decode_json(content)
     # print(content)
     return content
+
+# new implement 2
+
+@app.route('/new_sign_up/', methods=['POST','GET'])
+def new_sign_up():
+    try:
+        content=request.get_json()
+        x=newSignUp(content['email'],content['password'])
+        if(x=="already user"):
+            return "already user",403
+        elif(x=="error"):
+            return "error",422
+        else:
+            return x,200
+    except:
+        return 'error',422
+
+@app.route('/email_otp/', methods=['POST','GET'])
+def email_otp():
+    try:
+        content = request.get_json()
+        x=emailOtpAuth(content['email'],content['OTP'])
+        if(x=='user not found'):
+            return x,404
+        elif(x=="wrong otp"):
+            return x,401
+        elif(x=='error'):
+            return x,422
+        else:
+            return x,200
+    except:
+        return 'error',422
+
+@app.route('/new_sign_in/', methods=['POST','GET'])
+def new_sign_in():
+    try:
+        content = request.get_json()
+        x = newSignIn(content['email'],content['password'])
+        if(x=="user not found"):
+            return "user not found",404
+        elif(x=="incorrect password"):
+            return "incorrect password",401
+        elif(x=='error'):
+            return 'error',422
+        else:
+            return x,200
+    except:
+        return "error",422
+
+@app.route('/liked_colleges/', methods=['POST','GET'])
+def liked_colleges():
+    content = request.get_json()
+    x=likedColleges(content['email'],content['id'])
+    if(x=='error'):
+        return x,422
+    else:
+        return x,200
+
+@app.route('/unliked_colleges/', methods=['POST', 'GET'])
+def unliked_colleges():
+    content = request.get_json()
+    x = unlikedColleges(content['email'],content['id'])
+    if (x == 'error'):
+        return x, 422
+    else:
+        return x, 200
 
 
 if __name__ == "__main__":
